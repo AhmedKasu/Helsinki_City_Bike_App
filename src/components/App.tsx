@@ -7,7 +7,7 @@ function App() {
       templateAreas={`"header"
                        "main"
                       "footer"`}>
-      <GridItem pl='2' area={'header'}>
+      <GridItem pl='2' pr='2' area={'header'}>
         <NavBar />
       </GridItem>
       <GridItem pl='2' bg='green.300' area={'main'}>
