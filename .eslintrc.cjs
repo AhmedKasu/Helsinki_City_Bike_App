@@ -22,6 +22,6 @@ module.exports = {
     ],
     'react-hooks/exhaustive-deps': 'off',
     'object-shorthand': 'error',
-    'no-console': 'warn',
+    'no-console': 'off',
   },
 };
