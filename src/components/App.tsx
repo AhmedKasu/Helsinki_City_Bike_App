@@ -1,4 +1,4 @@
-import { Grid, GridItem } from '@chakra-ui/react';
+import { Grid, GridItem, Center } from '@chakra-ui/react';
 import NavBar from './NavBar';
 import Journeys from './Journeys';
 
@@ -11,9 +11,11 @@ function App() {
       <GridItem pl='2' pr='2' area={'header'}>
         <NavBar />
       </GridItem>
-      <GridItem p='2' area={'main'}>
-        <Journeys />
-      </GridItem>
+      <Center p='10'>
+        <GridItem area={'main'}>
+          <Journeys />
+        </GridItem>
+      </Center>
       <GridItem pl='2' area={'footer'}>
         Footer
       </GridItem>
