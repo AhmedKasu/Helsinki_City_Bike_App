@@ -14,6 +14,7 @@ import { BsDashLg, BsDash } from 'react-icons/bs';
 import { CiClock2 } from 'react-icons/ci';
 
 import { Journey as TypeJourney } from '../types';
+import styles from '../utils/styles';
 interface Props {
   journey: TypeJourney;
 }
@@ -47,10 +48,14 @@ const Journey = ({ journey }: Props) => {
           </Stack>
 
           <Stack flex={1} direction={'column'}>
-            <Heading color='#808080' fontSize='xs'>
+            <Heading
+              color={styles.text.color.primary}
+              fontSize={styles.text.fontSize.xSmall}>
               {departureStationName}
             </Heading>
-            <Text color='#808080' fontSize='xs'>
+            <Text
+              color={styles.text.color.primary}
+              fontSize={styles.text.fontSize.xSmall}>
               {departure?.replace(
                 'GMT+0300 (Eastern European Summer Time)',
                 ''
@@ -59,16 +64,22 @@ const Journey = ({ journey }: Props) => {
             <Divider />
             <HStack>
               <CiClock2 />
-              <Text color='#808080' fontSize='xs'>
+              <Text
+                color={styles.text.color.primary}
+                fontSize={styles.text.fontSize.xSmall}>
                 {Math.round(durationSeconds / 60)} min (
                 {(coveredDistanceMeters * 0.001).toFixed(1)} km)
               </Text>
             </HStack>
             <Divider />
-            <Heading color='#808080' fontSize='xs'>
+            <Heading
+              color={styles.text.color.primary}
+              fontSize={styles.text.fontSize.xSmall}>
               {returnStationName}
             </Heading>
-            <Text color='#808080' fontSize='xs'>
+            <Text
+              color={styles.text.color.primary}
+              fontSize={styles.text.fontSize.xSmall}>
               {journey.return?.replace(
                 'GMT+0300 (Eastern European Summer Time)',
                 ''
