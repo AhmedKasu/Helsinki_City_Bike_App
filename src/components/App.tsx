@@ -11,10 +11,10 @@ function App() {
       <GridItem pl='2' pr='2' area={'header'}>
         <NavBar />
       </GridItem>
-      <GridItem pl='2' area={'main'}>
+      <GridItem p='2' area={'main'}>
         <Journeys />
       </GridItem>
-      <GridItem pl='2' bg='blue.300' area={'footer'}>
+      <GridItem pl='2' area={'footer'}>
         Footer
       </GridItem>
     </Grid>
