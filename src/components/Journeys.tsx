@@ -1,15 +1,14 @@
-import { useQuery } from '@apollo/client';
-import { GET_JOURNEYS } from '../graphql/queries';
 import { SimpleGrid } from '@chakra-ui/react';
 
 import Journey from './Journey';
+
 import { Journey as TypeJourney } from '../types';
+import useJourneys from '../hooks/useJourneys';
 
 const Journeys = () => {
-  const { data } = useQuery(GET_JOURNEYS, { fetchPolicy: 'cache-and-network' });
+  const { data } = useJourneys();
 
   const journeys: TypeJourney[] | [] = data ? data.allJourneys.journeys : [];
-  console.log('journeys', journeys);
 
   return (
     <>
