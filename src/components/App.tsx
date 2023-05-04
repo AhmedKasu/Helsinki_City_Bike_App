@@ -7,25 +7,51 @@ function App() {
   return (
     <Grid
       templateAreas={{
-        base: `"nav" "main"`,
+        base: `"nav" "mid" "main"`,
+        md: `"nav nav" "side main"`,
         lg: `"nav nav" "side main"`,
       }}
       templateColumns={{
         base: '1fr',
+        md: '33% 1fr',
         lg: '33% 1fr',
+      }}
+      templateRows={{
+        base: '50px 150px 1fr',
+        md: '100px 1fr',
+        lg: '100px 1fr',
       }}>
-      <GridItem pl='2' pr='2' area='nav' pos='sticky' top={0} zIndex={10}>
+      <GridItem
+        area='nav'
+        pl='2'
+        pr='2'
+        pos='fixed'
+        top={0}
+        width='100%'
+        zIndex={10}>
         <NavBar />
       </GridItem>
 
-      <Show above='lg'>
+      <Show above='768px'>
         <GridItem
-          pl='5'
           area='side'
+          height='50%'
+          pl='5'
           top={100}
           pos='fixed'
-          height='50%'
           width='33%'>
+          <SearchInput />
+        </GridItem>
+      </Show>
+
+      <Show below='767px'>
+        <GridItem
+          area='mid'
+          height='50%'
+          pos='fixed'
+          top={50}
+          width='100%'
+          zIndex={5}>
           <SearchInput />
         </GridItem>
       </Show>

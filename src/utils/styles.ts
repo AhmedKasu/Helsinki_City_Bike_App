@@ -12,7 +12,7 @@ const styles = {
     return: '#d6204e',
   },
   input: {
-    width: '80%',
+    maxWidth: '80%',
   },
 };
 export default styles;

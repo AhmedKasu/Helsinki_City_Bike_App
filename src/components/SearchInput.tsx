@@ -3,10 +3,13 @@ import styles from '../utils/styles';
 
 const SearchInput = () => {
   return (
-    <Stack pl={10}>
-      <Input width={styles.input.width} placeholder='Departure station name' />
-      <Input width={styles.input.width} placeholder='Return station name' />
-      <Button width={styles.input.width}>Search</Button>
+    <Stack pl={5} p={5} marginLeft={7}>
+      <Input
+        width={styles.input.maxWidth}
+        placeholder='Departure station name'
+      />
+      <Input width={styles.input.maxWidth} placeholder='Return station name' />
+      <Button width={styles.input.maxWidth}>Search</Button>
     </Stack>
   );
 };
