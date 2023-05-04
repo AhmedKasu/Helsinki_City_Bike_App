@@ -17,7 +17,7 @@ const Journeys = () => {
       {error?.networkError && (
         <Retry message='Connection error!' onReload={() => refetch()} />
       )}
-      <SimpleGrid columns={2} spacing={5}>
+      <SimpleGrid columns={{ sm: 1, md: 2, lg: 2 }} spacing={5}>
         {loading && skeletons.map((s) => <JourneySkeleton key={s} />)}
         {journeys.map((journey) => (
           <Journey key={journey.id} journey={journey} />

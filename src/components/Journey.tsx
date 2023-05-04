@@ -29,7 +29,7 @@ const Journey = ({ journey }: Props) => {
   } = journey;
 
   return (
-    <Card width={400}>
+    <Card>
       <CardBody>
         <Stack direction={'row'} spacing='24px'>
           <Stack direction={'column'} spacing='10px'>
