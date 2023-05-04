@@ -34,7 +34,7 @@ const Journey = ({ journey }: Props) => {
         <Stack direction={'row'} spacing='24px'>
           <Stack direction={'column'} spacing='10px'>
             <Box>
-              <IoLocationSharp size={20} color='green' />
+              <IoLocationSharp size={20} color={styles.icon.departure} />
               <BsDashLg
                 size={20}
                 style={{ transform: 'rotate(90deg)', marginTop: '5px' }}
@@ -43,7 +43,7 @@ const Journey = ({ journey }: Props) => {
             <IoBicycle size={20} style={{ marginTop: '10px' }} />
             <Box>
               <BsDash size={20} style={{ transform: 'rotate(90deg)' }} />
-              <IoLocationSharp size={20} color='#d6204e' />
+              <IoLocationSharp size={20} color={styles.icon.return} />
             </Box>
           </Stack>
 

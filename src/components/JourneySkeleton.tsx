@@ -1,19 +1,31 @@
-import { Card, CardBody, Skeleton, HStack } from '@chakra-ui/react';
+import {
+  Card,
+  CardBody,
+  Skeleton,
+  HStack,
+  SkeletonCircle,
+  Stack,
+} from '@chakra-ui/react';
+import styles from '../utils/styles';
 
 const JourneySkeleton = () => {
   return (
-    <Card p={5} height={180} width={400}>
+    <Card height={170} p={5}>
       <HStack spacing={2}>
-        <Skeleton height={100} width={2} />
+        <Stack direction={'column'}>
+          <SkeletonCircle startColor={styles.icon.departure} size='2' />
+          <Skeleton height={77} width={2} />
+          <SkeletonCircle startColor={styles.icon.return} size='2' />
+        </Stack>
+
         <CardBody>
           <Skeleton
-            startColor='pink.500'
-            endColor='orange.500'
+            startColor='BlackAlpha.300'
             marginBottom={2}
             height={10}
-            width={300}
+            width='50%'
           />
-          <Skeleton height={10} width={300} />
+          <Skeleton height={10} width='50%' />
         </CardBody>
       </HStack>
     </Card>
