@@ -11,5 +11,8 @@ const styles = {
     departure: '#48BB78',
     return: '#d6204e',
   },
+  input: {
+    width: '80%',
+  },
 };
 export default styles;

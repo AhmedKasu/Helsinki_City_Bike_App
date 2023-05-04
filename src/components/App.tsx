@@ -1,6 +1,7 @@
 import { Grid, GridItem, Show } from '@chakra-ui/react';
 import NavBar from './NavBar';
 import Journeys from './Journeys';
+import SearchInput from './SearchInput';
 
 function App() {
   return (
@@ -19,13 +20,14 @@ function App() {
 
       <Show above='lg'>
         <GridItem
-          bg={'green'}
           pl='5'
           area='side'
           top={100}
           pos='fixed'
           height='50%'
-          width='33%'></GridItem>
+          width='33%'>
+          <SearchInput />
+        </GridItem>
       </Show>
 
       <GridItem p={5} area='main'>
