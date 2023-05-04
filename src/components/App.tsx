@@ -3,7 +3,12 @@ import NavBar from './NavBar';
 import Journeys from './Journeys';
 import SearchInput from './SearchInput';
 
+import { Journey } from '../types';
+import useJourneys from '../hooks/useJourneys';
+
 function App() {
+  const { data, error, loading, refetch } = useJourneys();
+  const journeys: Journey[] | [] = data ? data.allJourneys.journeys : [];
   return (
     <Grid
       templateAreas={{
@@ -57,7 +62,12 @@ function App() {
       </Show>
 
       <GridItem p={5} area='main'>
-        <Journeys />
+        <Journeys
+          error={error}
+          journeys={journeys}
+          loading={loading}
+          refetch={refetch}
+        />
       </GridItem>
     </Grid>
   );

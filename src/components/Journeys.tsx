@@ -4,14 +4,19 @@ import Journey from './Journey';
 import JourneySkeleton from './JourneySkeleton';
 import Retry from './Reload';
 
+import { ApolloError } from '@apollo/client';
 import { Journey as TypeJourney } from '../types';
-import useJourneys from '../hooks/useJourneys';
 
-const Journeys = () => {
-  const { data, error, loading, refetch } = useJourneys();
+interface Props {
+  error: ApolloError | undefined;
+  loading: boolean;
+  journeys: TypeJourney[] | [];
+  refetch: () => void;
+}
+
+const Journeys = ({ error, journeys, loading, refetch }: Props) => {
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
 
-  const journeys: TypeJourney[] | [] = data ? data.allJourneys.journeys : [];
   return (
     <>
       {error?.networkError && (
