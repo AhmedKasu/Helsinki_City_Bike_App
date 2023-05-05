@@ -1,7 +1,9 @@
 import { Grid, GridItem, Show } from '@chakra-ui/react';
+import { FieldValues } from 'react-hook-form';
+
 import NavBar from './NavBar';
 import Journeys from './Journeys';
-import SearchInput from './SearchInput';
+import SearchJourneyForm from './SearchJourneyForm';
 
 import { Journey } from '../types';
 import useJourneys from '../hooks/useJourneys';
@@ -9,6 +11,10 @@ import useJourneys from '../hooks/useJourneys';
 function App() {
   const { data, error, loading, refetch } = useJourneys();
   const journeys: Journey[] | [] = data ? data.allJourneys.journeys : [];
+
+  const onSearchJourney = (variables: FieldValues) =>
+    console.log('variables', variables);
+
   return (
     <Grid
       templateAreas={{
@@ -45,7 +51,7 @@ function App() {
           top={100}
           pos='fixed'
           width='33%'>
-          <SearchInput />
+          <SearchJourneyForm onSubmit={onSearchJourney} />
         </GridItem>
       </Show>
 
@@ -57,7 +63,7 @@ function App() {
           top={50}
           width='100%'
           zIndex={5}>
-          <SearchInput />
+          <SearchJourneyForm onSubmit={onSearchJourney} />
         </GridItem>
       </Show>
 
