@@ -1,21 +1,32 @@
 import { Input } from '@chakra-ui/react';
 import { useFormContext } from 'react-hook-form';
 
-import styles from '../../utils/styles';
+import AutoCompleteMenu from './AutoCompleteMenu';
 
+import styles from '../../utils/styles';
 interface Props {
   name: string;
   placeholder: string;
+  autoCompleteItems: string[] | [];
 }
 
-const TextInput = ({ name, placeholder }: Props) => {
-  const { register } = useFormContext();
+const TextInput = ({ name, placeholder, autoCompleteItems }: Props) => {
+  const { setValue, register } = useFormContext();
   return (
-    <Input
-      {...register(name)}
-      width={styles.input.maxWidth}
-      placeholder={placeholder}
-    />
+    <>
+      <Input
+        autoComplete='off'
+        {...register(name)}
+        width={styles.input.maxWidth}
+        placeholder={placeholder}
+      />
+      {autoCompleteItems?.length > 0 && (
+        <AutoCompleteMenu
+          menuItems={autoCompleteItems}
+          onSelectIem={(item) => setValue(name, item)}
+        />
+      )}
+    </>
   );
 };
 

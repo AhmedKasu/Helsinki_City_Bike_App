@@ -11,3 +11,9 @@ export const GET_JOURNEYS = gql`
     }
   }
 `;
+
+export const SEARCH_STATION = gql`
+  query SearchStation($nimi: String!) {
+    searchStation(nimi: $nimi)
+  }
+`;
