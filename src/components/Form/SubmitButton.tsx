@@ -7,7 +7,7 @@ interface Props {
 
 const SubmitButton = ({ label }: Props) => {
   return (
-    <Button type='submit' width={styles.input.maxWidth}>
+    <Button type='submit' w={styles.input.maxWidth}>
       {label}
     </Button>
   );

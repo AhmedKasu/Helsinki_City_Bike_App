@@ -1,5 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { FieldValues, FormProvider, useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
 
 import useStationAutoComplete from '../hooks/useStationAutoComplete';
 
@@ -14,12 +16,20 @@ interface EventValue {
   type: string | undefined;
 }
 
+const schema = z.object({
+  departureStationName: z.string().nonempty('Station name is required!'),
+  returnStationName: z.string().nonempty('Station name is required!'),
+});
+
+type FormData = z.infer<typeof schema>;
+
 const SearchJourneyForm = ({ onSubmit }: Props) => {
-  const methods = useForm({
+  const methods = useForm<FormData>({
     defaultValues: {
       departureStationName: '',
       returnStationName: '',
     },
+    resolver: zodResolver(schema),
   });
   const eventType = useRef<EventValue>({ name: undefined, type: undefined });
 

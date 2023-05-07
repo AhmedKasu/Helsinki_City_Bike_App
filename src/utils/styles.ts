@@ -2,6 +2,7 @@ const styles = {
   text: {
     color: {
       primary: '#808080',
+      error: '#d6204e',
     },
     fontSize: {
       xSmall: 'xs',
