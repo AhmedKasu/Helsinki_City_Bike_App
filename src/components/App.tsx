@@ -9,11 +9,18 @@ import { Journey } from '../types';
 import useJourneys from '../hooks/useJourneys';
 
 function App() {
-  const { data, error, loading, refetch } = useJourneys();
-  const journeys: Journey[] | [] = data ? data.allJourneys.journeys : [];
+  const { data, error, loading, refetch, getJourney, getJourneyResults } =
+    useJourneys();
 
-  const onSearchJourney = (variables: FieldValues) =>
-    console.log('variables', variables);
+  const journeys: Journey[] = getJourneyResults.data
+    ? getJourneyResults.data.allJourneys.journeys
+    : data
+    ? data.allJourneys.journeys
+    : [];
+
+  const onSearchJourney = (variables: FieldValues) => {
+    getJourney({ variables: { ...variables } });
+  };
 
   return (
     <Grid

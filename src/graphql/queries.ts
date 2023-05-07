@@ -3,8 +3,11 @@ import { JOURNEY_PARTS } from './fragments';
 
 export const GET_JOURNEYS = gql`
   ${JOURNEY_PARTS}
-  query AllJourneys {
-    allJourneys {
+  query AllJourneys($departureStationName: String, $returnStationName: String) {
+    allJourneys(
+      departureStationName: $departureStationName
+      returnStationName: $returnStationName
+    ) {
       journeys {
         ...JourneyParts
       }

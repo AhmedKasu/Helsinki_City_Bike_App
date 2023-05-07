@@ -1,4 +1,4 @@
-import { useQuery } from '@apollo/client';
+import { useQuery, useLazyQuery } from '@apollo/client';
 import { GET_JOURNEYS } from '../graphql/queries';
 
 const useJourneys = () => {
@@ -6,11 +6,14 @@ const useJourneys = () => {
     fetchPolicy: 'cache-and-network',
   });
 
+  const [getJourney, getJourneyResults] = useLazyQuery(GET_JOURNEYS);
   return {
     error,
     data,
     loading,
     refetch,
+    getJourney,
+    getJourneyResults,
   };
 };
 
