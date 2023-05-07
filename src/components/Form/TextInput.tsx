@@ -1,4 +1,9 @@
-import { Input } from '@chakra-ui/react';
+import {
+  Input,
+  CloseButton,
+  InputGroup,
+  InputRightElement,
+} from '@chakra-ui/react';
 import { useFormContext } from 'react-hook-form';
 
 import AutoCompleteMenu from './AutoCompleteMenu';
@@ -13,20 +18,26 @@ interface Props {
 
 const TextInput = ({ name, placeholder, autoCompleteItems }: Props) => {
   const {
+    formState: { errors },
     setValue,
     register,
-    formState: { errors },
+    resetField,
   } = useFormContext();
 
   const error = errors[name]?.message;
   return (
     <>
-      <Input
-        autoComplete='off'
-        {...register(name)}
-        width={styles.input.maxWidth}
-        placeholder={placeholder}
-      />
+      <InputGroup w={styles.input.maxWidth}>
+        <Input
+          autoComplete='off'
+          {...register(name)}
+          placeholder={placeholder}
+          w='full'
+        />
+        <InputRightElement
+          children={<CloseButton onClick={() => resetField(name)} />}
+        />
+      </InputGroup>
       {error && <FormError error={error as string} />}
       {autoCompleteItems?.length > 0 && (
         <AutoCompleteMenu
