@@ -1,4 +1,6 @@
-import { Button, HStack, Text } from '@chakra-ui/react';
+import { Button, HStack } from '@chakra-ui/react';
+
+import Info from './Info';
 
 interface Props {
   message: string;
@@ -8,7 +10,7 @@ interface Props {
 const Reload = ({ message, onReload }: Props) => {
   return (
     <HStack>
-      <Text>{message}</Text>
+      <Info message={message} />
       <Button colorScheme='blue' size='sm' variant='solid' onClick={onReload}>
         reload
       </Button>

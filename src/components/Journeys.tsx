@@ -3,6 +3,7 @@ import { SimpleGrid } from '@chakra-ui/react';
 import Journey from './Journey';
 import JourneySkeleton from './JourneySkeleton';
 import Retry from './Reload';
+import Info from './Info';
 
 import { ApolloError } from '@apollo/client';
 import { Journey as TypeJourney } from '../types';
@@ -24,9 +25,13 @@ const Journeys = ({ error, journeys, loading, refetch }: Props) => {
       )}
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 2 }} spacing={5}>
         {loading && skeletons.map((s) => <JourneySkeleton key={s} />)}
-        {journeys.map((journey) => (
-          <Journey key={journey.id} journey={journey} />
-        ))}
+        {journeys.length < 1 ? (
+          <Info message='No journeys found' />
+        ) : (
+          journeys.map((journey) => (
+            <Journey key={journey.id} journey={journey} />
+          ))
+        )}
       </SimpleGrid>
     </>
   );
