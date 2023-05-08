@@ -1,4 +1,5 @@
-import { Box, List, ListItem } from '@chakra-ui/react';
+import { Box, List, ListItem, useColorMode } from '@chakra-ui/react';
+import styles from '../../utils/styles';
 
 interface Props {
   menuItems: string[];
@@ -6,6 +7,7 @@ interface Props {
 }
 
 const AutoCompleteMenu = ({ menuItems, onSelectIem }: Props) => {
+  const { colorMode } = useColorMode();
   return (
     <Box>
       <List
@@ -14,14 +16,16 @@ const AutoCompleteMenu = ({ menuItems, onSelectIem }: Props) => {
         boxShadow='xl'
         p='1'
         rounded='md'
-        w={'65.5%'}
+        w={'70%'}
         pos='absolute'
         spacing={1}
-        bg='white'
+        bg={colorMode === 'dark' ? 'gray.700' : 'white'}
         zIndex={9}>
         {menuItems.map((item) => (
           <ListItem
-            _hover={{ backgroundColor: '#EDF2F7' }}
+            _hover={{
+              backgroundColor: colorMode === 'dark' ? '#22303c' : '#EDF2F7',
+            }}
             key={item}
             fontSize='sm'
             onClick={() => onSelectIem(item)}>
