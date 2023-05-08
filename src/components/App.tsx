@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Grid, GridItem, Show } from '@chakra-ui/react';
 import { FieldValues } from 'react-hook-form';
 
@@ -5,21 +6,21 @@ import NavBar from './NavBar';
 import Journeys from './Journeys';
 import SearchJourneyForm from './SearchJourneyForm';
 
-import { Journey } from '../types';
+import { Journey, JourneysQuery, SearchVariables } from '../types';
 import useJourneys from '../hooks/useJourneys';
 
 function App() {
-  const { data, error, loading, refetch, getJourney, getJourneyResults } =
-    useJourneys();
+  const [journeysQuery, setJourneysQuery] = useState<JourneysQuery>({
+    departureStationName: '',
+    returnStationName: '',
+  });
 
-  const journeys: Journey[] = getJourneyResults.data
-    ? getJourneyResults.data.allJourneys.journeys
-    : data
-    ? data.allJourneys.journeys
-    : [];
+  const { data, error, loading, refetch } = useJourneys(journeysQuery);
+
+  const journeys: Journey[] = data ? data.allJourneys.journeys : [];
 
   const onSearchJourney = (variables: FieldValues) => {
-    getJourney({ variables: { ...variables } });
+    setJourneysQuery({ ...journeys, ...(variables as SearchVariables) });
   };
 
   return (

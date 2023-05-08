@@ -1,19 +1,18 @@
-import { useQuery, useLazyQuery } from '@apollo/client';
+import { useQuery } from '@apollo/client';
 import { GET_JOURNEYS } from '../graphql/queries';
+import { JourneysQuery } from '../types';
 
-const useJourneys = () => {
+const useJourneys = (variables: JourneysQuery) => {
   const { loading, data, error, refetch } = useQuery(GET_JOURNEYS, {
     fetchPolicy: 'cache-and-network',
+    variables: { ...variables },
   });
 
-  const [getJourney, getJourneyResults] = useLazyQuery(GET_JOURNEYS);
   return {
     error,
     data,
     loading,
     refetch,
-    getJourney,
-    getJourneyResults,
   };
 };
 
