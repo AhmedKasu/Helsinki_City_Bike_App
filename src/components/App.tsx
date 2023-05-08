@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Grid, GridItem, Show } from '@chakra-ui/react';
+import { Grid, GridItem, HStack, Show, useColorMode } from '@chakra-ui/react';
 import { FieldValues } from 'react-hook-form';
 
 import NavBar from './NavBar';
@@ -15,8 +15,10 @@ import {
 } from '../types';
 import useJourneys from '../hooks/useJourneys';
 import { parseFilter } from '../utils/parsers';
+import styles from '../utils/styles';
 
 function App() {
+  const { colorMode } = useColorMode();
   const [journeysQuery, setJourneysQuery] = useState<JourneysQuery>({
     departureStationName: '',
     returnStationName: '',
@@ -25,7 +27,6 @@ function App() {
   });
 
   const { data, error, loading, refetch } = useJourneys(journeysQuery);
-
   const journeys: Journey[] = data ? data.allJourneys.journeys : [];
 
   const onSearchJourney = (variables: FieldValues) => {
@@ -81,13 +82,16 @@ function App() {
       <Show below='767px'>
         <GridItem
           area='mid'
-          height='50%'
+          bg={colorMode === 'dark' ? styles.theme.darkSecondary : 'white'}
+          height='20%'
           pos='fixed'
           top={50}
-          width='100%'
-          zIndex={5}>
-          <SearchJourneyForm onSubmit={onSearchJourney} />
-          <FilterJourneyForm onSubmit={onFilterJourney} />
+          w='100%'
+          zIndex={9}>
+          <HStack spacing='1px'>
+            <SearchJourneyForm onSubmit={onSearchJourney} />
+            <FilterJourneyForm onSubmit={onFilterJourney} />
+          </HStack>
         </GridItem>
       </Show>
 

@@ -11,9 +11,7 @@ const Form = ({ children, onSubmit }: Props) => {
   const { handleSubmit } = useFormContext();
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <Stack pl={5} p={5} marginLeft={7}>
-        {children}
-      </Stack>
+      <Stack p={5}>{children}</Stack>
     </form>
   );
 };

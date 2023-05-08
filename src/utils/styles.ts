@@ -15,5 +15,8 @@ const styles = {
   input: {
     maxWidth: '80%',
   },
+  theme: {
+    darkSecondary: '#15202b',
+  },
 };
 export default styles;
