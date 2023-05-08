@@ -9,3 +9,22 @@ export interface Journey {
   coveredDistanceMeters: number;
   durationSeconds: number;
 }
+
+export type JourneysQuery = {
+  departureStationName?: string;
+  returnStationName?: string;
+  coveredDistanceMeters?: number;
+  durationSeconds?: number;
+};
+export interface SearchVariables {
+  departureStationName: string;
+  returnStationName: string;
+}
+export interface FilterVariables {
+  coveredDistanceMeters: number;
+  durationSeconds: number;
+}
+export interface FilterParserArgs {
+  distance: string;
+  duration: string;
+}

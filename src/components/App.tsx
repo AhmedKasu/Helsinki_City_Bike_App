@@ -5,14 +5,23 @@ import { FieldValues } from 'react-hook-form';
 import NavBar from './NavBar';
 import Journeys from './Journeys';
 import SearchJourneyForm from './SearchJourneyForm';
+import FilterJourneyForm from './FilterJourneyForm';
 
-import { Journey, JourneysQuery, SearchVariables } from '../types';
+import {
+  FilterParserArgs,
+  Journey,
+  JourneysQuery,
+  SearchVariables,
+} from '../types';
 import useJourneys from '../hooks/useJourneys';
+import { parseFilter } from '../utils/parsers';
 
 function App() {
   const [journeysQuery, setJourneysQuery] = useState<JourneysQuery>({
     departureStationName: '',
     returnStationName: '',
+    durationSeconds: 10,
+    coveredDistanceMeters: 10,
   });
 
   const { data, error, loading, refetch } = useJourneys(journeysQuery);
@@ -21,6 +30,11 @@ function App() {
 
   const onSearchJourney = (variables: FieldValues) => {
     setJourneysQuery({ ...journeys, ...(variables as SearchVariables) });
+  };
+
+  const onFilterJourney = (variables: FieldValues) => {
+    const parserdVariables = parseFilter(variables as FilterParserArgs);
+    setJourneysQuery({ ...journeysQuery, ...parserdVariables });
   };
 
   return (
@@ -60,6 +74,7 @@ function App() {
           pos='fixed'
           width='33%'>
           <SearchJourneyForm onSubmit={onSearchJourney} />
+          <FilterJourneyForm onSubmit={onFilterJourney} />
         </GridItem>
       </Show>
 
@@ -72,6 +87,7 @@ function App() {
           width='100%'
           zIndex={5}>
           <SearchJourneyForm onSubmit={onSearchJourney} />
+          <FilterJourneyForm onSubmit={onFilterJourney} />
         </GridItem>
       </Show>
 
