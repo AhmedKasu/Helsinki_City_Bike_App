@@ -15,6 +15,7 @@ import { CiClock2 } from 'react-icons/ci';
 
 import { Journey as TypeJourney } from '../types';
 import styles from '../utils/styles';
+import { metersToKm, secondToMin } from '../utils/parsers';
 interface Props {
   journey: TypeJourney;
 }
@@ -67,8 +68,8 @@ const Journey = ({ journey }: Props) => {
               <Text
                 color={styles.text.color.primary}
                 fontSize={styles.text.fontSize.xSmall}>
-                {Math.round(durationSeconds / 60)} min (
-                {(coveredDistanceMeters * 0.001).toFixed(1)} km)
+                {secondToMin(durationSeconds)} min (
+                {metersToKm(coveredDistanceMeters)} km)
               </Text>
             </HStack>
             <Divider />
