@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { Grid, GridItem, HStack, Show, useColorMode } from '@chakra-ui/react';
+import { Grid, GridItem, Show, useColorMode } from '@chakra-ui/react';
 import { FieldValues } from 'react-hook-form';
 
-import NavBar from './NavBar';
-import Journeys from './Journeys';
-import SearchJourneyForm from './SearchJourneyForm';
 import FilterJourneyForm from './FilterJourneyForm';
+import Journeys from './Journeys';
 import JourneysSorter from './JourneysSorter';
+import SearchJourneyForm from './SearchJourneyForm';
+import NavBar from './NavBar';
+import Modal from './Modal';
 
 import {
   FilterParserArgs,
@@ -59,10 +60,10 @@ function App() {
       templateColumns={{
         base: '1fr',
         md: '33% 1fr',
-        lg: '33% 1fr',
+        lg: '30% 1fr',
       }}
       templateRows={{
-        base: '50px 150px 1fr',
+        base: '50px 50px 1fr',
         md: '100px 1fr',
         lg: '100px 1fr',
       }}>
@@ -95,15 +96,16 @@ function App() {
         <GridItem
           area='mid'
           bg={colorMode === 'dark' ? styles.theme.darkSecondary : 'white'}
-          height='20%'
+          height='5%'
           pos='fixed'
           top={50}
           w='100%'
           zIndex={9}>
-          <HStack spacing='1px'>
+          <Modal>
             <SearchJourneyForm onSubmit={onSearchJourney} />
+            <JourneysSorter onSelectSortOrder={onSortJourney} />
             <FilterJourneyForm onSubmit={onFilterJourney} />
-          </HStack>
+          </Modal>
         </GridItem>
       </Show>
 
