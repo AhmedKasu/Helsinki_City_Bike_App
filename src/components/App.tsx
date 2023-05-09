@@ -6,12 +6,14 @@ import NavBar from './NavBar';
 import Journeys from './Journeys';
 import SearchJourneyForm from './SearchJourneyForm';
 import FilterJourneyForm from './FilterJourneyForm';
+import JourneysSorter from './JourneysSorter';
 
 import {
   FilterParserArgs,
   Journey,
   JourneysQuery,
   SearchVariables,
+  SortOrders,
 } from '../types';
 import useJourneys from '../hooks/useJourneys';
 import { parseFilter } from '../utils/parsers';
@@ -20,10 +22,12 @@ import styles from '../utils/styles';
 function App() {
   const { colorMode } = useColorMode();
   const [journeysQuery, setJourneysQuery] = useState<JourneysQuery>({
-    departureStationName: '',
-    returnStationName: '',
-    durationSeconds: 10,
-    coveredDistanceMeters: 10,
+    orderBy: {
+      departureStationName: 'asc',
+      returnStationName: 'asc',
+      durationSeconds: 'asc',
+      coveredDistanceMeters: 'asc',
+    },
   });
 
   const { data, error, loading, refetch } = useJourneys(journeysQuery);
@@ -36,6 +40,13 @@ function App() {
   const onFilterJourney = (variables: FieldValues) => {
     const parserdVariables = parseFilter(variables as FilterParserArgs);
     setJourneysQuery({ ...journeysQuery, ...parserdVariables });
+  };
+
+  const onSortJourney = (sortOrders: FieldValues) => {
+    setJourneysQuery({
+      ...journeysQuery,
+      orderBy: { ...(sortOrders as SortOrders) },
+    });
   };
 
   return (
@@ -75,6 +86,7 @@ function App() {
           pos='fixed'
           width='33%'>
           <SearchJourneyForm onSubmit={onSearchJourney} />
+          <JourneysSorter onSelectSortOrder={onSortJourney} />
           <FilterJourneyForm onSubmit={onFilterJourney} />
         </GridItem>
       </Show>

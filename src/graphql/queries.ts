@@ -4,16 +4,18 @@ import { JOURNEY_PARTS } from './fragments';
 export const GET_JOURNEYS = gql`
   ${JOURNEY_PARTS}
   query AllJourneys(
-    $departureStationName: String
-    $returnStationName: String
     $coveredDistanceMeters: Int
     $durationSeconds: Int
+    $returnStationName: String
+    $departureStationName: String
+    $orderBy: OrderBy
   ) {
     allJourneys(
-      departureStationName: $departureStationName
-      returnStationName: $returnStationName
       coveredDistanceMeters: $coveredDistanceMeters
       durationSeconds: $durationSeconds
+      returnStationName: $returnStationName
+      departureStationName: $departureStationName
+      orderBy: $orderBy
     ) {
       journeys {
         ...JourneyParts

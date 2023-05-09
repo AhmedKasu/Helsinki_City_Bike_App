@@ -15,6 +15,7 @@ export type JourneysQuery = {
   returnStationName?: string;
   coveredDistanceMeters?: number;
   durationSeconds?: number;
+  orderBy?: SortOrders;
 };
 export interface SearchVariables {
   departureStationName: string;
@@ -27,4 +28,12 @@ export interface FilterVariables {
 export interface FilterParserArgs {
   distance: string;
   duration: string;
+}
+
+export type SortOrder = 'asc' | 'desc';
+export interface SortOrders {
+  departureStationName: SortOrder;
+  returnStationName: SortOrder;
+  durationSeconds: SortOrder;
+  coveredDistanceMeters: SortOrder;
 }
