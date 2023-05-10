@@ -1,6 +1,4 @@
 import { Box, List, ListItem, useColorMode } from '@chakra-ui/react';
-import styles from '../../utils/styles';
-
 interface Props {
   menuItems: string[];
   onSelectIem: (item: string) => void;
