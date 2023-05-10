@@ -31,7 +31,7 @@ function App() {
     },
   });
 
-  const { data, error, loading, refetch, fetchMore } =
+  const { data, error, fetchMore, loading, networkStatus, refetch } =
     useJourneys(journeysQuery);
   const journeys: Journey[] = data ? data.allJourneys.journeys : [];
 
@@ -116,6 +116,7 @@ function App() {
           fetchMore={fetchMore}
           journeys={journeys}
           loading={loading}
+          networkStatus={networkStatus}
           refetch={refetch}
         />
       </GridItem>

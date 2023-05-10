@@ -16,9 +16,10 @@ interface JourneysResults {
 }
 
 const useJourneys = (variables: JourneysQuery) => {
-  const { loading, data, error, refetch, fetchMore } =
+  const { loading, data, error, refetch, fetchMore, networkStatus } =
     useQuery<JourneysResults>(GET_JOURNEYS, {
       fetchPolicy: 'cache-and-network',
+      notifyOnNetworkStatusChange: true,
       variables: { ...variables },
     });
 
@@ -41,9 +42,10 @@ const useJourneys = (variables: JourneysQuery) => {
   return {
     error,
     data,
-    loading,
-    refetch,
     fetchMore: handleFetchMore,
+    loading,
+    networkStatus,
+    refetch,
   };
 };
 

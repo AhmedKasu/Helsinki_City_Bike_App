@@ -1,4 +1,5 @@
-import { SimpleGrid } from '@chakra-ui/react';
+import { ApolloError, NetworkStatus } from '@apollo/client';
+import { SimpleGrid, Spinner } from '@chakra-ui/react';
 import { Waypoint } from 'react-waypoint';
 
 import Journey from './Journey';
@@ -6,18 +7,25 @@ import JourneySkeleton from './JourneySkeleton';
 import Retry from './Reload';
 import Info from './Info';
 
-import { ApolloError } from '@apollo/client';
 import { Journey as TypeJourney } from '../types';
 
 interface Props {
   error: ApolloError | undefined;
-  loading: boolean;
-  journeys: TypeJourney[] | [];
-  refetch: () => void;
   fetchMore: () => void;
+  journeys: TypeJourney[] | [];
+  loading: boolean;
+  networkStatus: NetworkStatus;
+  refetch: () => void;
 }
 
-const Journeys = ({ error, fetchMore, journeys, loading, refetch }: Props) => {
+const Journeys = ({
+  error,
+  fetchMore,
+  journeys,
+  loading,
+  networkStatus,
+  refetch,
+}: Props) => {
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
   return (
     <>
@@ -34,6 +42,7 @@ const Journeys = ({ error, fetchMore, journeys, loading, refetch }: Props) => {
           ))
         )}
         <Waypoint onEnter={() => fetchMore()} />
+        {networkStatus === 3 && <Spinner color='red' />}
       </SimpleGrid>
     </>
   );
