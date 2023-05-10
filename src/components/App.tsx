@@ -68,14 +68,7 @@ function App() {
         md: '100px 1fr',
         lg: '100px 1fr',
       }}>
-      <GridItem
-        area='nav'
-        pl='2'
-        pr='2'
-        pos='fixed'
-        top={0}
-        width='100%'
-        zIndex={10}>
+      <GridItem area='nav' pos='fixed' top={0} w='100%' zIndex={10}>
         <NavBar />
       </GridItem>
 
@@ -99,7 +92,7 @@ function App() {
           bg={colorMode === 'dark' ? styles.theme.darkSecondary : 'white'}
           height='5%'
           pos='fixed'
-          top={50}
+          top={70}
           w='100%'
           zIndex={9}>
           <Modal>
