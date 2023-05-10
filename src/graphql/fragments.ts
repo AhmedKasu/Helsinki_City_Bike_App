@@ -13,3 +13,13 @@ export const JOURNEY_PARTS = gql`
     durationSeconds
   }
 `;
+
+export const PAGINATION_DETAILS = gql`
+  fragment PaginationDetails on PaginationDetails {
+    resultsTotal
+    limit
+    currentPage
+    nextPage
+    previousPage
+  }
+`;

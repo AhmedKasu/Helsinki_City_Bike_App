@@ -1,4 +1,5 @@
 import { SimpleGrid } from '@chakra-ui/react';
+import { Waypoint } from 'react-waypoint';
 
 import Journey from './Journey';
 import JourneySkeleton from './JourneySkeleton';
@@ -13,11 +14,11 @@ interface Props {
   loading: boolean;
   journeys: TypeJourney[] | [];
   refetch: () => void;
+  fetchMore: () => void;
 }
 
-const Journeys = ({ error, journeys, loading, refetch }: Props) => {
+const Journeys = ({ error, fetchMore, journeys, loading, refetch }: Props) => {
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
-
   return (
     <>
       {error?.networkError && (
@@ -32,6 +33,7 @@ const Journeys = ({ error, journeys, loading, refetch }: Props) => {
             <Journey key={journey.id} journey={journey} />
           ))
         )}
+        <Waypoint onEnter={() => fetchMore()} />
       </SimpleGrid>
     </>
   );

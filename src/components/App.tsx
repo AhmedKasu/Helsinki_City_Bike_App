@@ -31,7 +31,8 @@ function App() {
     },
   });
 
-  const { data, error, loading, refetch } = useJourneys(journeysQuery);
+  const { data, error, loading, refetch, fetchMore } =
+    useJourneys(journeysQuery);
   const journeys: Journey[] = data ? data.allJourneys.journeys : [];
 
   const onSearchJourney = (variables: FieldValues) => {
@@ -112,6 +113,7 @@ function App() {
       <GridItem p={5} area='main'>
         <Journeys
           error={error}
+          fetchMore={fetchMore}
           journeys={journeys}
           loading={loading}
           refetch={refetch}
