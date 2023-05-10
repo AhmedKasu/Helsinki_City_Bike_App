@@ -9,7 +9,17 @@ const cache = new InMemoryCache({
     Query: {
       fields: {
         allJourneys: {
-          keyArgs: false,
+          keyArgs: [
+            'departure',
+            'return',
+            'departureStationId',
+            ' returnStationName',
+            'returnStationId',
+            'departureStationName',
+            'coveredDistanceMeters',
+            'durationSeconds',
+            'orderBy',
+          ],
           merge(existing, incoming) {
             if (!incoming) return existing;
             if (!existing) return incoming;
