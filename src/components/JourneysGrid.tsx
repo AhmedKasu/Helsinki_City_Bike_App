@@ -1,5 +1,5 @@
 import { Grid, GridItem, Show, useColorMode } from '@chakra-ui/react';
-import { ApolloError, NetworkStatus } from '@apollo/client';
+import { NetworkStatus } from '@apollo/client';
 
 import FilterJourneyForm from './FilterJourneyForm';
 import JourneysSorter from './JourneysSorter';
@@ -10,31 +10,27 @@ import SearchJourneyForm from './SearchJourneyForm';
 import styles from '../utils/styles';
 import { Journey } from '../types';
 import { FieldValues } from 'react-hook-form';
-
 interface Args {
-  error: ApolloError | undefined;
   fetchMore: () => void;
   journeys: Journey[] | [];
   loading: boolean;
   networkStatus: NetworkStatus;
-  refetch: () => void;
   onSearchJourney: (variables: FieldValues) => void;
   onFilterJourney: (variables: FieldValues) => void;
   onSortJourney: (variables: FieldValues) => void;
 }
 
 const JourneysGrid = ({
-  error,
   fetchMore,
   journeys,
   loading,
-  refetch,
   networkStatus,
   onSearchJourney,
   onFilterJourney,
   onSortJourney,
 }: Args) => {
   const { colorMode } = useColorMode();
+
   return (
     <Grid
       templateAreas={{
@@ -84,12 +80,10 @@ const JourneysGrid = ({
       </Show>
       <GridItem p={5} area='main'>
         <Journeys
-          error={error}
           fetchMore={fetchMore}
           journeys={journeys}
           loading={loading}
           networkStatus={networkStatus}
-          refetch={refetch}
         />
       </GridItem>
     </Grid>

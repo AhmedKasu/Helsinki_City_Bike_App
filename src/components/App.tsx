@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Grid, GridItem } from '@chakra-ui/react';
 import { FieldValues } from 'react-hook-form';
 
+import Error from './Error';
 import NavBar from './NavBar';
 import JourneysGrid from './JourneysGrid';
 
@@ -25,7 +26,7 @@ function App() {
     },
   });
 
-  const { data, error, fetchMore, loading, networkStatus, refetch } =
+  const { data, error, fetchMore, loading, networkStatus } =
     useJourneys(journeysQuery);
   const journeys: Journey[] = data ? data.allJourneys.journeys : [];
 
@@ -45,6 +46,7 @@ function App() {
     });
   };
 
+  if (error) return <Error error={error} />;
   return (
     <Grid
       templateAreas={{
@@ -68,7 +70,6 @@ function App() {
 
       <GridItem area='main'>
         <JourneysGrid
-          error={error}
           fetchMore={fetchMore}
           journeys={journeys}
           loading={loading}
@@ -76,7 +77,6 @@ function App() {
           onFilterJourney={onFilterJourney}
           onSearchJourney={onSearchJourney}
           onSortJourney={onSortJourney}
-          refetch={refetch}
         />
       </GridItem>
     </Grid>

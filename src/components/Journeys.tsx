@@ -1,50 +1,34 @@
-import { ApolloError, NetworkStatus } from '@apollo/client';
+import { NetworkStatus } from '@apollo/client';
 import { SimpleGrid, Spinner } from '@chakra-ui/react';
 import { Waypoint } from 'react-waypoint';
 
 import Journey from './Journey';
 import JourneySkeleton from './JourneySkeleton';
-import Retry from './Reload';
 import Info from './Info';
 
 import { Journey as TypeJourney } from '../types';
-
 interface Props {
-  error: ApolloError | undefined;
   fetchMore: () => void;
   journeys: TypeJourney[] | [];
   loading: boolean;
   networkStatus: NetworkStatus;
-  refetch: () => void;
 }
 
-const Journeys = ({
-  error,
-  fetchMore,
-  journeys,
-  loading,
-  networkStatus,
-  refetch,
-}: Props) => {
+const Journeys = ({ fetchMore, journeys, loading, networkStatus }: Props) => {
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
   return (
-    <>
-      {error?.networkError && (
-        <Retry message='Connection error!' onReload={() => refetch()} />
+    <SimpleGrid columns={{ sm: 1, md: 2, lg: 2 }} spacing={5}>
+      {loading && skeletons.map((s) => <JourneySkeleton key={s} />)}
+      {journeys.length < 1 ? (
+        <Info message='No journeys found' />
+      ) : (
+        journeys.map((journey) => (
+          <Journey key={journey.id} journey={journey} />
+        ))
       )}
-      <SimpleGrid columns={{ sm: 1, md: 2, lg: 2 }} spacing={5}>
-        {loading && skeletons.map((s) => <JourneySkeleton key={s} />)}
-        {journeys.length < 1 ? (
-          <Info message='No journeys found' />
-        ) : (
-          journeys.map((journey) => (
-            <Journey key={journey.id} journey={journey} />
-          ))
-        )}
-        <Waypoint onEnter={() => fetchMore()} />
-        {networkStatus === 3 && <Spinner color='red' />}
-      </SimpleGrid>
-    </>
+      <Waypoint onEnter={() => fetchMore()} />
+      {networkStatus === 3 && <Spinner color='red' />}
+    </SimpleGrid>
   );
 };
 
