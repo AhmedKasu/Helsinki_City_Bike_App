@@ -19,13 +19,14 @@ const Journeys = ({ fetchMore, journeys, loading, networkStatus }: Props) => {
   return (
     <SimpleGrid columns={{ sm: 1, md: 2, lg: 2 }} spacing={5}>
       {loading && skeletons.map((s) => <JourneySkeleton key={s} />)}
-      {journeys.length < 1 ? (
-        <Info message='No journeys found' />
-      ) : (
-        journeys.map((journey) => (
-          <Journey key={journey.id} journey={journey} />
-        ))
+
+      {journeys.length < 1 && !loading && (
+        <Info message='No journeys found !' />
       )}
+
+      {journeys.map((journey) => (
+        <Journey key={journey.id} journey={journey} />
+      ))}
       <Waypoint onEnter={() => fetchMore()} />
       {networkStatus === 3 && <Spinner color='red' />}
     </SimpleGrid>

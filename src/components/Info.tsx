@@ -1,7 +1,11 @@
-import { Text } from '@chakra-ui/react';
+import { Center, Text } from '@chakra-ui/react';
 
 const Info = ({ message }: { message: string }) => {
-  return <Text>{message}</Text>;
+  return (
+    <Center p={10}>
+      <Text>{message}</Text>
+    </Center>
+  );
 };
 
 export default Info;
