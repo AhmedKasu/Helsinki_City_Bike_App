@@ -1,4 +1,4 @@
-import { HStack, Text, Image, useColorMode } from '@chakra-ui/react';
+import { HStack, Text, Image, useColorMode, Show } from '@chakra-ui/react';
 import { NavLink } from 'react-router-dom';
 
 import logo from '../assets/logo.png';
@@ -16,11 +16,13 @@ const NavBar = () => {
       justifyContent='space-between'
       rounded='sm'>
       <HStack>
-        <Image src={logo} boxSize='60px' />
-        <Text style={styles.logo}>HCB</Text>
+        <Image src={logo} boxSize='70px' />
+        <Show above='768px'>
+          <Text style={styles.logo}>HCB</Text>
+        </Show>
       </HStack>
 
-      <HStack spacing={24} w='33%'>
+      <HStack spacing={'20%'} w='40%'>
         <NavLink style={({ isActive }) => styles.navLink(isActive)} to='/'>
           Journeys
         </NavLink>
@@ -30,6 +32,7 @@ const NavBar = () => {
           Stations
         </NavLink>
       </HStack>
+
       <ThemeToggler />
     </HStack>
   );
