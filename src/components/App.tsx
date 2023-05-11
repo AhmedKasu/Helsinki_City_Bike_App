@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Error from './Error';
 import NavBar from './NavBar';
 import JourneysGrid from './JourneysGrid';
-import Stations from './Stations';
+import StationsGrid from './StationsGrid';
 
 import {
   FilterParserArgs,
@@ -87,7 +87,7 @@ function App() {
                 />
               }
             />
-            <Route path='/stations' element={<Stations />} />
+            <Route path='/stations' element={<StationsGrid />} />
           </Routes>
         </GridItem>
       </Grid>
