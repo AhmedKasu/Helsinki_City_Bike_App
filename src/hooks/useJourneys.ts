@@ -1,17 +1,11 @@
 import { useQuery } from '@apollo/client';
 import { GET_JOURNEYS } from '../graphql/queries';
-import { JourneysQuery, Journey } from '../types';
+import { JourneysQuery, Journey, PaginationDetails } from '../types';
 
 interface JourneysResults {
   allJourneys: {
     journeys: Journey[];
-    paginationDetails: {
-      resultsTotal: number;
-      limit: number;
-      currentPage: number;
-      nextPage: boolean;
-      previousPage: boolean;
-    };
+    paginationDetails: PaginationDetails;
   };
 }
 
@@ -41,7 +35,7 @@ const useJourneys = (variables: JourneysQuery) => {
 
   return {
     error,
-    data,
+    journeys: data ? data.allJourneys.journeys : [],
     fetchMore: handleFetchMore,
     loading,
     networkStatus,

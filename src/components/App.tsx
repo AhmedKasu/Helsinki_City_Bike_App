@@ -10,7 +10,6 @@ import StationsGrid from './StationsGrid';
 
 import {
   FilterParserArgs,
-  Journey,
   JourneysQuery,
   SearchVariables,
   SortOrders,
@@ -28,9 +27,8 @@ function App() {
     },
   });
 
-  const { data, error, fetchMore, loading, networkStatus } =
+  const { journeys, error, fetchMore, loading, networkStatus } =
     useJourneys(journeysQuery);
-  const journeys: Journey[] = data ? data.allJourneys.journeys : [];
 
   const onSearchJourney = (variables: FieldValues) => {
     setJourneysQuery({ ...journeys, ...(variables as SearchVariables) });
