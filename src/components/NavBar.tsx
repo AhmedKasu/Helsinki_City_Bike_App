@@ -1,6 +1,10 @@
-import { HStack, Image, Text, useColorMode } from '@chakra-ui/react';
+import { HStack, Text, Image, useColorMode } from '@chakra-ui/react';
+import { NavLink } from 'react-router-dom';
+
 import logo from '../assets/logo.png';
 import ThemeToggler from './ThemeToggler';
+
+import styles from '../utils/styles';
 
 const NavBar = () => {
   const { colorMode } = useColorMode();
@@ -13,9 +17,18 @@ const NavBar = () => {
       rounded='sm'>
       <HStack>
         <Image src={logo} boxSize='60px' />
-        <Text fontStyle={'italic'} fontWeight={'bold'} textColor={'#2980B9'}>
-          HCB
-        </Text>
+        <Text style={styles.logo}>HCB</Text>
+      </HStack>
+
+      <HStack spacing={24} w='33%'>
+        <NavLink style={({ isActive }) => styles.navLink(isActive)} to='/'>
+          Journeys
+        </NavLink>
+        <NavLink
+          style={({ isActive }) => styles.navLink(isActive)}
+          to='/stations'>
+          Stations
+        </NavLink>
       </HStack>
       <ThemeToggler />
     </HStack>

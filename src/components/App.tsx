@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { Grid, GridItem } from '@chakra-ui/react';
 import { FieldValues } from 'react-hook-form';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Error from './Error';
 import NavBar from './NavBar';
 import JourneysGrid from './JourneysGrid';
+import Stations from './Stations';
 
 import {
   FilterParserArgs,
@@ -48,38 +50,48 @@ function App() {
 
   if (error) return <Error error={error} />;
   return (
-    <Grid
-      templateAreas={{
-        base: `"nav" "main"`,
-        md: `"nav nav" "main"`,
-        lg: `"nav nav" "main"`,
-      }}
-      templateColumns={{
-        base: '1fr',
-        md: '1fr',
-        lg: '1fr',
-      }}
-      templateRows={{
-        base: '50px 1fr',
-        md: '100px 1fr',
-        lg: '100px 1fr',
-      }}>
-      <GridItem area='nav' pos='fixed' top={0} w='100%' zIndex={10}>
-        <NavBar />
-      </GridItem>
+    <Router>
+      <Grid
+        templateAreas={{
+          base: `"nav" "main"`,
+          md: `"nav nav" "main"`,
+          lg: `"nav nav" "main"`,
+        }}
+        templateColumns={{
+          base: '1fr',
+          md: '1fr',
+          lg: '1fr',
+        }}
+        templateRows={{
+          base: '50px 1fr',
+          md: '100px 1fr',
+          lg: '100px 1fr',
+        }}>
+        <GridItem area='nav' pos='fixed' top={0} w='100%' zIndex={10}>
+          <NavBar />
+        </GridItem>
 
-      <GridItem area='main'>
-        <JourneysGrid
-          fetchMore={fetchMore}
-          journeys={journeys}
-          loading={loading}
-          networkStatus={networkStatus}
-          onFilterJourney={onFilterJourney}
-          onSearchJourney={onSearchJourney}
-          onSortJourney={onSortJourney}
-        />
-      </GridItem>
-    </Grid>
+        <GridItem area='main'>
+          <Routes>
+            <Route
+              path='/'
+              element={
+                <JourneysGrid
+                  fetchMore={fetchMore}
+                  journeys={journeys}
+                  loading={loading}
+                  networkStatus={networkStatus}
+                  onFilterJourney={onFilterJourney}
+                  onSearchJourney={onSearchJourney}
+                  onSortJourney={onSortJourney}
+                />
+              }
+            />
+            <Route path='/stations' element={<Stations />} />
+          </Routes>
+        </GridItem>
+      </Grid>
+    </Router>
   );
 }
 
