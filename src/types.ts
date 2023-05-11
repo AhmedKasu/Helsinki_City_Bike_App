@@ -10,6 +10,25 @@ export interface Journey {
   durationSeconds: number;
 }
 
+export interface PaginationDetails {
+  resultsTotal: number;
+  limit: number;
+  currentPage: number;
+  nextPage: boolean;
+  previousPage: boolean;
+}
+
+export interface Station {
+  id: number;
+  nimi: string;
+  osoite: string;
+  kaupunki: string;
+  operaattor: string;
+  kapasiteet: string;
+  x: string;
+  y: string;
+}
+
 export type JourneysQuery = {
   departureStationName?: string;
   returnStationName?: string;

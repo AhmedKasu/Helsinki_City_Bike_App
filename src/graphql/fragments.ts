@@ -14,6 +14,19 @@ export const JOURNEY_PARTS = gql`
   }
 `;
 
+export const STATION_PARTS = gql`
+  fragment StationParts on Station {
+    id
+    nimi
+    osoite
+    kaupunki
+    operaattor
+    kapasiteet
+    x
+    y
+  }
+`;
+
 export const PAGINATION_DETAILS = gql`
   fragment PaginationDetails on PaginationDetails {
     resultsTotal

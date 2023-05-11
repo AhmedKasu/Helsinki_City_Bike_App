@@ -1,8 +1,12 @@
 import { Grid, GridItem } from '@chakra-ui/react';
 
+import useStations from '../hooks/useStations';
+
 import Stations from './Stations';
 
 const StationsGrid = () => {
+  const { stations } = useStations();
+
   return (
     <Grid
       templateAreas={{
@@ -25,7 +29,7 @@ const StationsGrid = () => {
       <GridItem area='side' bg='green'></GridItem>
 
       <GridItem p={5} area='main'>
-        <Stations />
+        <Stations stations={stations} />
       </GridItem>
     </Grid>
   );
