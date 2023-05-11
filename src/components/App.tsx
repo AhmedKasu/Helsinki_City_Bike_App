@@ -64,8 +64,8 @@ function App() {
         }}
         templateRows={{
           base: '50px 1fr',
-          md: '100px 1fr',
-          lg: '100px 1fr',
+          md: '70px 1fr',
+          lg: '70px 1fr',
         }}>
         <GridItem area='nav' pos='fixed' top={0} w='100%' zIndex={10}>
           <NavBar />

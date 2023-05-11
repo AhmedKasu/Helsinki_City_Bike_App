@@ -47,7 +47,8 @@ const JourneysGrid = ({
         base: '50px 1fr',
         md: 'fr',
         lg: '1fr',
-      }}>
+      }}
+      pt='5'>
       <Show above='768px'>
         <GridItem
           area='side'
