@@ -1,4 +1,4 @@
-import { Grid, GridItem } from '@chakra-ui/react';
+import { Grid, GridItem, Show } from '@chakra-ui/react';
 
 import useStations from '../hooks/useStations';
 
@@ -10,27 +10,36 @@ const StationsGrid = () => {
   return (
     <Grid
       templateAreas={{
-        base: `"top" "main" "bottom"`,
-        md: `"main side"`,
-        lg: `"main side"`,
+        base: `"top top" "main side"`,
+        md: `"top top" "main side"`,
+        lg: `"main side extra"`,
       }}
       templateColumns={{
-        base: '1fr',
-        lg: '20% 1fr',
-        md: '20% 1fr',
+        base: '1fr 1fr',
+        md: '30% 1fr',
+        lg: '17% 30% 1fr',
       }}
       templateRows={{
-        base: '200px 300px 1fr',
-        md: '1fr',
-        lg: '1fr ',
+        base: '200px 100vh',
+        md: '200px 100vh',
+        lg: '100vh',
       }}>
-      <GridItem area='top' bg='yellow'></GridItem>
-      <GridItem area='bottom' bg='blue'></GridItem>
-      <GridItem area='side' bg='green'></GridItem>
+      <Show below='992px'>
+        <GridItem p={5} area='top'></GridItem>
+      </Show>
 
-      <GridItem p={5} area='main'>
+      <GridItem area='main' p={5} maxH='calc(100vh - 100px)' overflowY='scroll'>
         <Stations stations={stations} />
       </GridItem>
+
+      <GridItem
+        area='side'
+        overflowY='scroll'
+        maxH='calc(100vh - 100px)'></GridItem>
+
+      <Show above='992px'>
+        <GridItem area='extra'></GridItem>
+      </Show>
     </Grid>
   );
 };
