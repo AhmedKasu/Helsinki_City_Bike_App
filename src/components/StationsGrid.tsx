@@ -1,17 +1,28 @@
+import { useState } from 'react';
 import { Grid, GridItem, Show } from '@chakra-ui/react';
 
 import useStations from '../hooks/useStations';
 import useStation from '../hooks/useStation';
 
 import Stations from './Stations';
+import StationDetails from './StationDetails';
 
 const StationsGrid = () => {
-  const { stations } = useStations();
-  const { station } = useStation({
+  const [stationQuery, setStationQuery] = useState({
     nimi: 'Keilalahti',
     month: 7,
   });
-  console.log(station);
+
+  const { stations } = useStations();
+  const { station, loading: stationLoading } = useStation(stationQuery);
+
+  const handleStationSelect = (station: string) => {
+    setStationQuery({ ...stationQuery, nimi: station });
+  };
+
+  const handleMonthSelect = (month: number) => {
+    setStationQuery({ ...stationQuery, month });
+  };
 
   return (
     <Grid
@@ -35,13 +46,17 @@ const StationsGrid = () => {
       </Show>
 
       <GridItem area='main' p={5} maxH='calc(100vh - 100px)' overflowY='scroll'>
-        <Stations stations={stations} />
+        <Stations stations={stations} onSelectStation={handleStationSelect} />
       </GridItem>
 
-      <GridItem
-        area='side'
-        overflowY='scroll'
-        maxH='calc(100vh - 100px)'></GridItem>
+      <GridItem area='side' overflowY='scroll' maxH='calc(100vh - 100px)'>
+        <StationDetails
+          station={station[0]}
+          loading={stationLoading}
+          selectedMonth={stationQuery.month}
+          onSelectMonth={handleMonthSelect}
+        />
+      </GridItem>
 
       <Show above='992px'>
         <GridItem area='extra'></GridItem>
