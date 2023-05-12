@@ -50,3 +50,34 @@ export const GET_STATIONS = gql`
     }
   }
 `;
+
+export const GET_STATION = gql`
+  query GetStation($nimi: String!, $month: Int) {
+    getStation(nimi: $nimi, month: $month) {
+      id
+      nimi
+      osoite
+      kaupunki
+      operaattor
+      kapasiteet
+      x
+      y
+      journeysStarting {
+        count
+        averageDistanceMeters
+        mostPopular {
+          returnStationName
+          journeys
+        }
+      }
+      journeysEnding {
+        count
+        averageDistanceMeters
+        mostPopular {
+          departureStationName
+          journeys
+        }
+      }
+    }
+  }
+`;

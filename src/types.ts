@@ -24,9 +24,33 @@ export interface Station {
   osoite: string;
   kaupunki: string;
   operaattor: string;
-  kapasiteet: string;
-  x: string;
-  y: string;
+  kapasiteet: number;
+  x: number;
+  y: number;
+}
+
+export type GetStation = Station & StationDetails;
+export interface StationDetails {
+  journeysStarting: {
+    count: number;
+    averageDistanceMeters: number;
+    mostPopular:
+      | {
+          returnStationName: string;
+          journeys: number;
+        }[]
+      | [];
+  };
+  journeysEnding: {
+    count: number;
+    averageDistanceMeters: number;
+    mostPopular:
+      | {
+          departureStationName: string;
+          journeys: number;
+        }[]
+      | [];
+  };
 }
 
 export type JourneysQuery = {

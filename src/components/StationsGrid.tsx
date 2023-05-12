@@ -1,11 +1,17 @@
 import { Grid, GridItem, Show } from '@chakra-ui/react';
 
 import useStations from '../hooks/useStations';
+import useStation from '../hooks/useStation';
 
 import Stations from './Stations';
 
 const StationsGrid = () => {
   const { stations } = useStations();
+  const { station } = useStation({
+    nimi: 'Keilalahti',
+    month: 7,
+  });
+  console.log(station);
 
   return (
     <Grid
