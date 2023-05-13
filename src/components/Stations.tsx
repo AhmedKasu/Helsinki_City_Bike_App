@@ -1,23 +1,40 @@
-import { List, ListItem, Text } from '@chakra-ui/react';
+import React from 'react';
+import { NetworkStatus } from '@apollo/client';
+
+import { List, ListItem, Spinner, Text } from '@chakra-ui/react';
+import { Waypoint } from 'react-waypoint';
 import { Station } from '../types';
 
-interface Stations {
+interface Args {
+  fetchMore: () => void;
+  networkStatus: NetworkStatus;
   stations: Station[];
   onSelectStation: (station: string) => void;
 }
 
-const Stations = ({ stations, onSelectStation }: Stations) => {
+const Stations = ({
+  fetchMore,
+  networkStatus,
+  stations,
+  onSelectStation,
+}: Args) => {
   return (
     <List>
       <ListItem>
-        {stations.map((station) => (
-          <Text
-            p='1'
-            key={station.id}
-            _hover={{ color: '#319795', cursor: 'pointer' }}
-            onClick={() => onSelectStation(station.nimi)}>
-            {station.nimi}
-          </Text>
+        {stations.map((station, i) => (
+          <React.Fragment key={station.id}>
+            <Text
+              p='1'
+              key={station.id}
+              _hover={{ color: '#319795', cursor: 'pointer' }}
+              onClick={() => onSelectStation(station.nimi)}>
+              {station.nimi}
+            </Text>
+            {stations.length === i + 1 && (
+              <Waypoint onEnter={() => fetchMore()} />
+            )}
+            {networkStatus === 3 && <Spinner color='red' />}
+          </React.Fragment>
         ))}
       </ListItem>
     </List>

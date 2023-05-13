@@ -39,8 +39,8 @@ export const SEARCH_STATION = gql`
 export const GET_STATIONS = gql`
   ${STATION_PARTS}
   ${PAGINATION_DETAILS}
-  query AllStations {
-    allStations {
+  query AllStations($currentPage: Int) {
+    allStations(currentPage: $currentPage) {
       stations {
         ...StationParts
       }

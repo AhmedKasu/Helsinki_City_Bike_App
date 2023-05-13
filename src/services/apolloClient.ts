@@ -32,6 +32,20 @@ const cache = new InMemoryCache({
             return result;
           },
         },
+        allStations: {
+          keyArgs: false,
+          merge(existing, incoming) {
+            if (!incoming) return existing;
+            if (!existing) return incoming;
+
+            const { stations, ...rest } = incoming;
+
+            const result = rest;
+            result.stations = [...existing.stations, ...stations];
+
+            return result;
+          },
+        },
       },
     },
   },

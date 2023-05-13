@@ -14,7 +14,7 @@ const StationsGrid = () => {
     month: 7,
   });
 
-  const { stations } = useStations();
+  const { fetchMore, networkStatus, stations } = useStations();
   const { station, loading: stationLoading } = useStation(stationQuery);
 
   const handleStationSelect = (station: string) => {
@@ -54,7 +54,12 @@ const StationsGrid = () => {
         p={2}
         maxH='calc(100vh - 100px)'
         overflowY='scroll'>
-        <Stations stations={stations} onSelectStation={handleStationSelect} />
+        <Stations
+          fetchMore={fetchMore}
+          networkStatus={networkStatus}
+          stations={stations}
+          onSelectStation={handleStationSelect}
+        />
       </GridItem>
 
       <GridItem area='details' overflowY='scroll' maxH='calc(100vh - 100px)'>
