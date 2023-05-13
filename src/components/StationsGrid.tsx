@@ -27,29 +27,32 @@ const StationsGrid = () => {
   return (
     <Grid
       templateAreas={{
-        base: `"top top" "main side"`,
-        md: `"top top" "main side"`,
-        lg: `"main side extra"`,
+        base: `"baseSearch baseSearch" 
+                "stations  details"`,
+        md: `"search   search  extra" 
+            "stations  details extra"`,
+        lg: `"search   search  extra" 
+            "stations  details extra"`,
       }}
       templateColumns={{
-        base: '1fr 1fr',
-        md: '30% 1fr',
-        lg: '17% 30% 1fr',
+        base: '40% 1fr',
+        md: '20% 30% 1fr',
+        lg: '20% 30% 1fr',
       }}
       templateRows={{
-        base: '200px 100vh',
-        md: '200px 100vh',
-        lg: '100vh',
+        base: '100px 100vh',
+        md: '80px 100vh',
+        lg: '80px 100vh',
       }}>
-      <Show below='992px'>
-        <GridItem p={5} area='top'></GridItem>
-      </Show>
-
-      <GridItem area='main' p={5} maxH='calc(100vh - 100px)' overflowY='scroll'>
+      <GridItem
+        area='stations'
+        p={2}
+        maxH='calc(100vh - 100px)'
+        overflowY='scroll'>
         <Stations stations={stations} onSelectStation={handleStationSelect} />
       </GridItem>
 
-      <GridItem area='side' overflowY='scroll' maxH='calc(100vh - 100px)'>
+      <GridItem area='details' overflowY='scroll' maxH='calc(100vh - 100px)'>
         <StationDetails
           station={station[0]}
           loading={stationLoading}
@@ -58,7 +61,12 @@ const StationsGrid = () => {
         />
       </GridItem>
 
-      <Show above='992px'>
+      <Show below='768px'>
+        <GridItem p={10} area='baseSearch'></GridItem>
+      </Show>
+
+      <Show above='767px'>
+        <GridItem area='search' p={2} pt={5} pos='relative'></GridItem>
         <GridItem area='extra'></GridItem>
       </Show>
     </Grid>
