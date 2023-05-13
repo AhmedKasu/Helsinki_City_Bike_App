@@ -6,6 +6,7 @@ import useStation from '../hooks/useStation';
 
 import Stations from './Stations';
 import StationDetails from './StationDetails';
+import SearchStationForm from './SearchStationForm';
 
 const StationsGrid = () => {
   const [stationQuery, setStationQuery] = useState({
@@ -22,6 +23,10 @@ const StationsGrid = () => {
 
   const handleMonthSelect = (month: number) => {
     setStationQuery({ ...stationQuery, month });
+  };
+
+  const handleStationSearch = (station: string) => {
+    setStationQuery({ ...stationQuery, nimi: station });
   };
 
   return (
@@ -62,11 +67,15 @@ const StationsGrid = () => {
       </GridItem>
 
       <Show below='768px'>
-        <GridItem p={10} area='baseSearch'></GridItem>
+        <GridItem p={10} area='baseSearch'>
+          <SearchStationForm onSearchStation={handleStationSearch} />
+        </GridItem>
       </Show>
 
       <Show above='767px'>
-        <GridItem area='search' p={2} pt={5} pos='relative'></GridItem>
+        <GridItem area='search' p={2} pt={5} pos='relative'>
+          <SearchStationForm onSearchStation={handleStationSearch} />
+        </GridItem>
         <GridItem area='extra'></GridItem>
       </Show>
     </Grid>
