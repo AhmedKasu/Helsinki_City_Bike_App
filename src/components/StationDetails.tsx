@@ -23,6 +23,7 @@ import { BsChevronDown } from 'react-icons/bs';
 
 import { metersToKm } from '../utils/parsers';
 import { GetStation } from '../types';
+import Info from './Info';
 
 const months = [
   { label: 'January', value: 1 },
@@ -52,10 +53,13 @@ const StationDetails = ({
   selectedMonth,
   onSelectMonth,
 }: Station) => {
-  const currentMonth = months.find((m) => selectedMonth === m.value);
+  const currentMonth: { label: string; value: number } | undefined =
+    months.find((m) => selectedMonth === m.value);
 
   if (loading)
     return <Spinner marginTop='50%' marginLeft='30%' color='red.500' />;
+
+  if (!station && !loading) return <Info message='Station not found!' />;
 
   // most Helsinki stations are missing city data
   const city = station.kaupunki !== ' ' ? station.kaupunki : 'Helsinki';
