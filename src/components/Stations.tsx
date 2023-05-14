@@ -22,10 +22,10 @@ const Stations = ({
     <List>
       <ListItem>
         {stations.map((station, i) => (
-          <React.Fragment key={station.id}>
+          <React.Fragment key={i}>
             <Text
-              p='1'
               key={station.id}
+              p='2'
               _hover={{ color: '#319795', cursor: 'pointer' }}
               onClick={() => onSelectStation(station.nimi)}>
               {station.nimi}
