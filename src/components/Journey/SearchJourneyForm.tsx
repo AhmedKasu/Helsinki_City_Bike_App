@@ -3,11 +3,11 @@ import { FieldValues, FormProvider, useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import useStationAutoComplete from '../hooks/useStationAutoComplete';
+import useStationAutoComplete from '../../hooks/useStationAutoComplete';
 
-import Form from './Form';
-import TextInput from './Form/TextInput';
-import SubmitButton from './Form/SubmitButton';
+import Form from '../Form';
+import TextInput from '../Form/TextInput';
+import SubmitButton from '../Form/SubmitButton';
 interface Props {
   onSubmit: (variables: FieldValues) => void;
 }

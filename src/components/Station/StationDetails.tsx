@@ -21,9 +21,9 @@ import {
 } from '@chakra-ui/react';
 import { BsChevronDown } from 'react-icons/bs';
 
-import { metersToKm } from '../utils/parsers';
-import { GetStation } from '../types';
-import Info from './Info';
+import { metersToKm } from '../../utils/parsers';
+import { GetStation } from '../../types';
+import Info from '../Info';
 
 const months = [
   { label: 'January', value: 1 },

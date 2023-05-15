@@ -13,9 +13,9 @@ import { IoLocationSharp, IoBicycle } from 'react-icons/io5';
 import { BsDashLg, BsDash } from 'react-icons/bs';
 import { CiClock2 } from 'react-icons/ci';
 
-import { Journey as TypeJourney } from '../types';
-import styles from '../utils/styles';
-import { metersToKm, secondToMin } from '../utils/parsers';
+import { Journey as TypeJourney } from '../../types';
+import styles from '../../utils/styles';
+import { metersToKm, secondToMin } from '../../utils/parsers';
 interface Props {
   journey: TypeJourney;
 }

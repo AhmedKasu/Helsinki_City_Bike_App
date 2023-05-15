@@ -4,11 +4,11 @@ import { NetworkStatus } from '@apollo/client';
 import FilterJourneyForm from './FilterJourneyForm';
 import JourneysSorter from './JourneysSorter';
 import Journeys from './Journeys';
-import Modal from './Modal';
+import Modal from '../Modal';
 import SearchJourneyForm from './SearchJourneyForm';
 
-import styles from '../utils/styles';
-import { Journey } from '../types';
+import styles from '../../utils/styles';
+import { Journey } from '../../types';
 import { FieldValues } from 'react-hook-form';
 interface Props {
   fetchMore: () => void;

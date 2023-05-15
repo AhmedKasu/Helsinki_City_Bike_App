@@ -1,8 +1,8 @@
 import { useRef, useEffect } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-import TextInput from './Form/TextInput';
-import useStationAutoComplete from '../hooks/useStationAutoComplete';
+import TextInput from '../Form/TextInput';
+import useStationAutoComplete from '../../hooks/useStationAutoComplete';
 
 interface EventValue {
   type: string | undefined;

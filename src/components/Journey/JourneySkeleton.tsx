@@ -6,7 +6,7 @@ import {
   SkeletonCircle,
   Stack,
 } from '@chakra-ui/react';
-import styles from '../utils/styles';
+import styles from '../../utils/styles';
 
 const JourneySkeleton = () => {
   return (

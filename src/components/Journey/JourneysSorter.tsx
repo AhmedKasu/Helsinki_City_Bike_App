@@ -9,7 +9,7 @@ import {
   MenuItemOption,
   MenuDivider,
 } from '@chakra-ui/react';
-import { SortOrders } from '../types';
+import { SortOrders } from '../../types';
 
 interface Props {
   onSelectSortOrder: (sortOrder: SortOrders) => void;

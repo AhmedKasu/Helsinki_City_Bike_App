@@ -4,9 +4,9 @@ import { Waypoint } from 'react-waypoint';
 
 import Journey from './Journey';
 import JourneySkeleton from './JourneySkeleton';
-import Info from './Info';
+import Info from '../Info';
 
-import { Journey as TypeJourney } from '../types';
+import { Journey as TypeJourney } from '../../types';
 interface Props {
   fetchMore: () => void;
   journeys: TypeJourney[] | [];

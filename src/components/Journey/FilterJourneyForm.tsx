@@ -1,8 +1,8 @@
 import { FieldValues, FormProvider, useForm } from 'react-hook-form';
 
-import Form from './Form';
-import NumberInput from './Form/NumberInput';
-import SubmitButton from './Form/SubmitButton';
+import Form from '../Form';
+import NumberInput from '../Form/NumberInput';
+import SubmitButton from '../Form/SubmitButton';
 
 interface FormData {
   distance: string;

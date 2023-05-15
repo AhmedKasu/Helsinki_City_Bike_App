@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { Grid, GridItem, Show } from '@chakra-ui/react';
 
-import useStations from '../hooks/useStations';
-import useStation from '../hooks/useStation';
+import useStations from '../../hooks/useStations';
+import useStation from '../../hooks/useStation';
 
 import Stations from './Stations';
 import StationDetails from './StationDetails';
 import SearchStationForm from './SearchStationForm';
-import Map from './Map';
+import Map from '../Map';
 interface StationQuery {
   nimi: string;
   month: number;

@@ -5,8 +5,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import Error from './Error';
 import NavBar from './NavBar';
-import JourneysGrid from './JourneysGrid';
-import StationsGrid from './StationsGrid';
+import JourneysGrid from './Journey/JourneysGrid';
+import StationsGrid from './Station/StationsGrid';
 
 import {
   FilterParserArgs,

@@ -3,7 +3,7 @@ import { NetworkStatus } from '@apollo/client';
 
 import { List, ListItem, Spinner, Text } from '@chakra-ui/react';
 import { Waypoint } from 'react-waypoint';
-import { Station } from '../types';
+import { Station } from '../../types';
 
 interface Props {
   fetchMore: () => void;
