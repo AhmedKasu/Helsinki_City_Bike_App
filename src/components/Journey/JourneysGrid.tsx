@@ -1,35 +1,55 @@
+import { useState } from 'react';
+import { FieldValues } from 'react-hook-form';
 import { Grid, GridItem, Show, useColorMode } from '@chakra-ui/react';
-import { NetworkStatus } from '@apollo/client';
 
+import Error from '../Error';
 import FilterJourneyForm from './FilterJourneyForm';
 import JourneysSorter from './JourneysSorter';
 import Journeys from './Journeys';
 import Modal from '../Modal';
 import SearchJourneyForm from './SearchJourneyForm';
 
+import {
+  FilterParserArgs,
+  JourneysQuery,
+  SearchVariables,
+  SortOrders,
+} from '../../types';
+import useJourneys from '../../hooks/useJourneys';
 import styles from '../../utils/styles';
-import { Journey } from '../../types';
-import { FieldValues } from 'react-hook-form';
-interface Props {
-  fetchMore: () => void;
-  journeys: Journey[] | [];
-  loading: boolean;
-  networkStatus: NetworkStatus;
-  onSearchJourney: (variables: FieldValues) => void;
-  onFilterJourney: (variables: FieldValues) => void;
-  onSortJourney: (variables: FieldValues) => void;
-}
+import { parseFilter } from '../../utils/parsers';
 
-const JourneysGrid = ({
-  fetchMore,
-  journeys,
-  loading,
-  networkStatus,
-  onSearchJourney,
-  onFilterJourney,
-  onSortJourney,
-}: Props) => {
+const JourneysGrid = () => {
   const { colorMode } = useColorMode();
+  const [journeysQuery, setJourneysQuery] = useState<JourneysQuery>({
+    orderBy: {
+      departureStationName: 'asc',
+      returnStationName: 'asc',
+      durationSeconds: 'asc',
+      coveredDistanceMeters: 'asc',
+    },
+  });
+
+  const { journeys, error, fetchMore, loading, networkStatus } =
+    useJourneys(journeysQuery);
+
+  const onSearchJourney = (variables: FieldValues) => {
+    setJourneysQuery({ ...journeys, ...(variables as SearchVariables) });
+  };
+
+  const onFilterJourney = (variables: FieldValues) => {
+    const parserdVariables = parseFilter(variables as FilterParserArgs);
+    setJourneysQuery({ ...journeysQuery, ...parserdVariables });
+  };
+
+  const onSortJourney = (sortOrders: FieldValues) => {
+    setJourneysQuery({
+      ...journeysQuery,
+      orderBy: { ...(sortOrders as SortOrders) },
+    });
+  };
+
+  if (error) return <Error error={error} />;
 
   return (
     <Grid
