@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { SortOrders } from '../types';
 
-interface Args {
+interface Props {
   onSelectSortOrder: (sortOrder: SortOrders) => void;
 }
 
@@ -22,7 +22,7 @@ const sortItems = [
   { label: 'Distance', value: 'coveredDistanceMeters' },
 ];
 
-const JourneysSorter = ({ onSelectSortOrder }: Args) => {
+const JourneysSorter = ({ onSelectSortOrder }: Props) => {
   const selectedFieldsRef = useRef<string | string[]>();
 
   const handleSortOrder = (order: string | string[]) => {

@@ -40,7 +40,7 @@ const months = [
   { label: 'December', value: 12 },
 ];
 
-interface Station {
+interface Props {
   loading: boolean;
   station: GetStation;
   selectedMonth: number;
@@ -52,7 +52,7 @@ const StationDetails = ({
   station,
   selectedMonth,
   onSelectMonth,
-}: Station) => {
+}: Props) => {
   const currentMonth: { label: string; value: number } | undefined =
     months.find((m) => selectedMonth === m.value);
 

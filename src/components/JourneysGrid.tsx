@@ -10,7 +10,7 @@ import SearchJourneyForm from './SearchJourneyForm';
 import styles from '../utils/styles';
 import { Journey } from '../types';
 import { FieldValues } from 'react-hook-form';
-interface Args {
+interface Props {
   fetchMore: () => void;
   journeys: Journey[] | [];
   loading: boolean;
@@ -28,7 +28,7 @@ const JourneysGrid = ({
   onSearchJourney,
   onFilterJourney,
   onSortJourney,
-}: Args) => {
+}: Props) => {
   const { colorMode } = useColorMode();
 
   return (

@@ -9,11 +9,11 @@ interface FormData {
   duration: string;
 }
 
-interface Args {
+interface Props {
   onSubmit: (variables: FieldValues) => void;
 }
 
-const FilterJourneyForm = ({ onSubmit }: Args) => {
+const FilterJourneyForm = ({ onSubmit }: Props) => {
   const methods = useForm<FormData>({
     defaultValues: { distance: '', duration: '' },
   });

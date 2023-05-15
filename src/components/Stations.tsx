@@ -5,7 +5,7 @@ import { List, ListItem, Spinner, Text } from '@chakra-ui/react';
 import { Waypoint } from 'react-waypoint';
 import { Station } from '../types';
 
-interface Args {
+interface Props {
   fetchMore: () => void;
   networkStatus: NetworkStatus;
   stations: Station[];
@@ -17,7 +17,7 @@ const Stations = ({
   networkStatus,
   stations,
   onSelectStation,
-}: Args) => {
+}: Props) => {
   return (
     <List>
       <ListItem>
