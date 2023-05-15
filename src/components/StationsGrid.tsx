@@ -7,9 +7,14 @@ import useStation from '../hooks/useStation';
 import Stations from './Stations';
 import StationDetails from './StationDetails';
 import SearchStationForm from './SearchStationForm';
+import Map from './Map';
+interface StationQuery {
+  nimi: string;
+  month: number;
+}
 
 const StationsGrid = () => {
-  const [stationQuery, setStationQuery] = useState({
+  const [stationQuery, setStationQuery] = useState<StationQuery>({
     nimi: 'Keilalahti',
     month: 7,
   });
@@ -29,15 +34,20 @@ const StationsGrid = () => {
     setStationQuery({ ...stationQuery, nimi: station });
   };
 
+  const stationCoordinates = {
+    lat: station[0]?.y,
+    lng: station[0]?.x,
+  };
+
   return (
     <Grid
       templateAreas={{
         base: `"baseSearch baseSearch" 
                 "stations  details"`,
-        md: `"search   search  extra" 
-            "stations  details extra"`,
-        lg: `"search   search  extra" 
-            "stations  details extra"`,
+        md: `"search   search  map" 
+            "stations  details map"`,
+        lg: `"search   search  map" 
+            "stations  details map"`,
       }}
       templateColumns={{
         base: '40% 1fr',
@@ -45,9 +55,9 @@ const StationsGrid = () => {
         lg: '20% 30% 1fr',
       }}
       templateRows={{
-        base: '100px 100vh',
-        md: '80px 100vh',
-        lg: '80px 100vh',
+        base: '100px 1fr',
+        md: '80px 1fr',
+        lg: '80px 1fr',
       }}>
       <GridItem
         area='stations'
@@ -81,7 +91,9 @@ const StationsGrid = () => {
         <GridItem area='search' p={2} pt={5} pos='relative'>
           <SearchStationForm onSearchStation={handleStationSearch} />
         </GridItem>
-        <GridItem area='extra'></GridItem>
+        <GridItem area='map'>
+          <Map coordinates={stationCoordinates} />
+        </GridItem>
       </Show>
     </Grid>
   );

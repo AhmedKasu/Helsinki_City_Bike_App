@@ -80,3 +80,8 @@ export interface SortOrders {
   durationSeconds: SortOrder;
   coveredDistanceMeters: SortOrder;
 }
+
+export interface Coordinates {
+  lat: number;
+  lng: number;
+}
