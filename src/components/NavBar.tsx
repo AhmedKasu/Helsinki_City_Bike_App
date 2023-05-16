@@ -38,7 +38,7 @@ const NavBar = () => {
       <Show above='480px'>
         <HStack
           spacing={{ sm: '10%', md: '10%', lg: '15%' }}
-          w={{ sm: '70%', md: '60%', lg: '50%' }}>
+          w={{ sm: '70%', md: '40%', lg: '40%' }}>
           <NavLink style={({ isActive }) => styles.navLink(isActive)} to='/'>
             Journeys
           </NavLink>
