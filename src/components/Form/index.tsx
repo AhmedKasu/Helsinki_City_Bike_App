@@ -4,7 +4,7 @@ import { Stack } from '@chakra-ui/react';
 import { FieldValues, useFormContext } from 'react-hook-form';
 interface Props {
   children: React.ReactNode;
-  onSubmit: (variables: FieldValues) => void;
+  onSubmit: (variables: FieldValues) => Promise<void> | void;
 }
 
 const Form = ({ children, onSubmit }: Props) => {

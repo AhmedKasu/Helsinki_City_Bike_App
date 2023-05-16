@@ -14,9 +14,15 @@ interface Props {
   name: string;
   placeholder: string;
   autoCompleteItems: string[] | [];
+  otherProps?: { type: React.HTMLInputTypeAttribute | undefined };
 }
 
-const TextInput = ({ name, placeholder, autoCompleteItems }: Props) => {
+const TextInput = ({
+  name,
+  placeholder,
+  autoCompleteItems,
+  otherProps,
+}: Props) => {
   const {
     formState: { errors },
     setValue,
@@ -33,6 +39,7 @@ const TextInput = ({ name, placeholder, autoCompleteItems }: Props) => {
           {...register(name)}
           placeholder={placeholder}
           w='full'
+          {...otherProps}
         />
         <InputRightElement
           children={<CloseButton onClick={() => resetField(name)} />}

@@ -1,6 +1,7 @@
 import { Grid, GridItem } from '@chakra-ui/react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import AddJourneyForm from './Journey/AddJourneyForm';
 import NavBar from './NavBar';
 import JourneysGrid from './Journey/JourneysGrid';
 import StationsGrid from './Station/StationsGrid';
@@ -32,6 +33,7 @@ function App() {
           <Routes>
             <Route path='/' element={<JourneysGrid />} />
             <Route path='/stations' element={<StationsGrid />} />
+            <Route path='/addJourney' element={<AddJourneyForm />} />
           </Routes>
         </GridItem>
       </Grid>
