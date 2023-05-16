@@ -14,14 +14,9 @@ import Form from '../Form';
 import NumberInput from '../Form/NumberInput';
 import SubmitButton from '../Form/SubmitButton';
 import TextInput from '../Form/TextInput';
-import { useRef, useEffect } from 'react';
-import useStationAutoComplete from '../../hooks/useStationAutoComplete';
-import useAddJourney from '../../hooks/useAddJourney';
 
-interface EventValue {
-  name: string | undefined;
-  type: string | undefined;
-}
+import useAddJourney from '../../hooks/useAddJourney';
+import useStationWatch from '../../hooks/useStationWatch';
 
 const schema = z.object({
   departure: z.string().nonempty('Departure date is required!'),
@@ -47,30 +42,9 @@ const AddJourneyForm = () => {
     resolver: zodResolver(schema),
   });
 
-  const eventType = useRef<EventValue>({ name: undefined, type: undefined });
-
-  useEffect(() => {
-    const subscription = methods.watch((_value, { name, type }) => {
-      eventType.current = { name, type };
-    });
-    return () => subscription.unsubscribe();
-  }, [methods.watch]);
-
-  const { name, type } = eventType.current;
-
-  const departuresWatch = methods.watch('departureStationName');
-  const { data: departures } = useStationAutoComplete(departuresWatch);
-  const departureSuggestions =
-    departures && name === 'departureStationName' && type !== undefined
-      ? departures?.searchStation
-      : [];
-
-  const returnsWatch = methods.watch('returnStationName');
-  const { data: returns } = useStationAutoComplete(returnsWatch);
-  const returnsSuggestions =
-    returns && name === 'returnStationName' && type !== undefined
-      ? returns?.searchStation
-      : [];
+  const { departureSuggestions, returnsSuggestions } = useStationWatch(
+    methods.watch
+  );
 
   const handleAddJourney = async (variables: FieldValues) => {
     const formData = {
