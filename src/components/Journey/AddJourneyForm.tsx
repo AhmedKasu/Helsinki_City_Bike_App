@@ -1,7 +1,14 @@
 import { useForm, FormProvider, FieldValues } from 'react-hook-form';
-import { Box, Center, CircularProgress, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Center,
+  CircularProgress,
+  Text,
+  useToast,
+} from '@chakra-ui/react';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useNavigate } from 'react-router-dom';
 
 import Form from '../Form';
 import NumberInput from '../Form/NumberInput';
@@ -30,8 +37,11 @@ export type FormData = z.infer<typeof schema>;
 const AddJourneyForm = () => {
   const {
     addJourney,
-    result: { data, loading },
+    result: { loading },
   } = useAddJourney();
+
+  const toast = useToast();
+  const navigate = useNavigate();
 
   const methods = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -72,10 +82,24 @@ const AddJourneyForm = () => {
       await addJourney(formData);
     } catch (e) {
       console.error(e);
+      toast({
+        isClosable: true,
+        status: 'error',
+        title: 'Failed to add Journey',
+        position: 'top',
+      });
+      return;
     }
+
+    toast({
+      isClosable: true,
+      status: 'success',
+      title: 'Journey succesfully added',
+      position: 'top',
+    });
+    navigate('/');
   };
 
-  console.log(data);
   if (loading)
     return (
       <Center>
