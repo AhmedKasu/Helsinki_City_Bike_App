@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Grid, GridItem, Show } from '@chakra-ui/react';
 
 import useStations from '../../hooks/useStations';
@@ -15,12 +15,16 @@ interface StationQuery {
 
 const StationsGrid = () => {
   const [stationQuery, setStationQuery] = useState<StationQuery>({
-    nimi: 'Keilalahti',
+    nimi: '',
     month: 7,
   });
 
   const { fetchMore, networkStatus, stations } = useStations();
   const { station, loading: stationLoading } = useStation(stationQuery);
+
+  useEffect(() => {
+    setStationQuery({ ...stationQuery, nimi: stations[0]?.nimi });
+  }, [stations[0]]);
 
   const handleStationSelect = (station: string) => {
     setStationQuery({ ...stationQuery, nimi: station });
