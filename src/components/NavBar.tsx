@@ -1,4 +1,17 @@
-import { HStack, Text, Image, useColorMode, Show } from '@chakra-ui/react';
+import {
+  HStack,
+  Text,
+  Image,
+  useColorMode,
+  Show,
+  IconButton,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  Box,
+} from '@chakra-ui/react';
+import { GiHamburgerMenu } from 'react-icons/gi';
 import { NavLink } from 'react-router-dom';
 
 import logo from '../assets/logo.png';
@@ -22,18 +35,68 @@ const NavBar = () => {
         </Show>
       </HStack>
 
-      <HStack spacing={'20%'} w='40%'>
-        <NavLink style={({ isActive }) => styles.navLink(isActive)} to='/'>
-          Journeys
-        </NavLink>
-        <NavLink
-          style={({ isActive }) => styles.navLink(isActive)}
-          to='/stations'>
-          Stations
-        </NavLink>
-      </HStack>
+      <Show above='480px'>
+        <HStack
+          spacing={{ sm: '10%', md: '10%', lg: '15%' }}
+          w={{ sm: '70%', md: '60%', lg: '50%' }}>
+          <NavLink style={({ isActive }) => styles.navLink(isActive)} to='/'>
+            Journeys
+          </NavLink>
+          <NavLink
+            style={({ isActive }) => styles.navLink(isActive)}
+            to='/stations'>
+            Stations
+          </NavLink>
+          <NavLink
+            style={({ isActive }) => styles.navLink(isActive)}
+            to='/addJourney'>
+            Add Journey
+          </NavLink>
+        </HStack>
+      </Show>
 
-      <ThemeToggler />
+      <Show below='480px'>
+        <Box p={5}>
+          <Menu>
+            <MenuButton
+              as={IconButton}
+              aria-label='Options'
+              icon={<GiHamburgerMenu />}
+              variant='outline'
+            />
+            <MenuList>
+              <MenuItem>
+                <NavLink
+                  style={({ isActive }) => styles.navLink(isActive)}
+                  to='/'>
+                  Journeys
+                </NavLink>
+              </MenuItem>
+              <MenuItem>
+                <NavLink
+                  style={({ isActive }) => styles.navLink(isActive)}
+                  to='/stations'>
+                  Stations
+                </NavLink>
+              </MenuItem>
+              <MenuItem>
+                <NavLink
+                  style={({ isActive }) => styles.navLink(isActive)}
+                  to='/addJourney'>
+                  Add Journey
+                </NavLink>
+              </MenuItem>
+              <MenuItem>
+                <ThemeToggler />
+              </MenuItem>
+            </MenuList>
+          </Menu>
+        </Box>
+      </Show>
+
+      <Show above='480px'>
+        <ThemeToggler />
+      </Show>
     </HStack>
   );
 };
