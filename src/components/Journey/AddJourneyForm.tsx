@@ -83,7 +83,7 @@ const AddJourneyForm = () => {
 
   return (
     <Center>
-      <Box w={{ lg: '50%', sm: '80%' }} pt={70}>
+      <Box w={{ lg: '50%', sm: '80%' }} pt={70} pos='relative'>
         <FormProvider {...methods}>
           <Form onSubmit={handleAddJourney}>
             <Text pl={2}>Departure</Text>
