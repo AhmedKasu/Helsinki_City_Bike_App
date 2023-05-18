@@ -57,10 +57,7 @@ const Journey = ({ journey }: Props) => {
             <Text
               color={styles.text.color.primary}
               fontSize={styles.text.fontSize.xSmall}>
-              {departure?.replace(
-                'GMT+0300 (Eastern European Summer Time)',
-                ''
-              )}
+              {departure?.substring(0, 24)}
             </Text>
             <Divider />
             <HStack>
@@ -81,10 +78,7 @@ const Journey = ({ journey }: Props) => {
             <Text
               color={styles.text.color.primary}
               fontSize={styles.text.fontSize.xSmall}>
-              {journey.return?.replace(
-                'GMT+0300 (Eastern European Summer Time)',
-                ''
-              )}
+              {journey.return?.substring(0, 24)}
             </Text>
           </Stack>
         </Stack>
