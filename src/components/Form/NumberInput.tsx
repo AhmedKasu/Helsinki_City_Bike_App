@@ -14,7 +14,7 @@ interface Props {
   max?: number;
 }
 
-const NumberInput = ({ name, min = 0, max = 50, placeholder }: Props) => {
+const NumberInput = ({ name, min = 0, max = 99999, placeholder }: Props) => {
   const {
     formState: { errors },
     register,
