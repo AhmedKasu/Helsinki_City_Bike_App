@@ -25,7 +25,7 @@ const FilterJourneyForm = ({ onSubmit }: Props) => {
       <Form onSubmit={onSubmit}>
         <NumberInput name='distance' placeholder='Distance (km)' />
         <NumberInput name='duration' placeholder='Duration (mins)' />
-        <SubmitButton label='Filter' isDisabled={isDirty ? false : true} />
+        <SubmitButton label='Filter' isDisabled={!isDirty} />
       </Form>
     </FormProvider>
   );
