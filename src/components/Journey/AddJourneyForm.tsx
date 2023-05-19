@@ -33,7 +33,12 @@ const schema = z.object({
     }),
   departureStationName: z.string().nonempty('Station name is required!'),
   returnStationName: z.string().nonempty('Station name is required!'),
-  coveredDistanceMeters: z.string().nonempty('Distance name is required!'),
+  coveredDistanceMeters: z
+    .string()
+    .nonempty('Distance name is required!')
+    .refine((distance) => parseInt(distance) >= 10, {
+      message: 'You can only add journeys that cover more than 10 meters',
+    }),
 });
 
 export type FormData = z.infer<typeof schema>;
