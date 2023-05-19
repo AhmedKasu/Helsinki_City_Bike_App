@@ -33,3 +33,9 @@ export const parseAddJourneyInputs = (inputs: FormData) => {
     coveredDistanceMeters: parseInt(inputs.coveredDistanceMeters),
   };
 };
+
+export const isValidReturn = (time: { departure: string; return: string }) => {
+  return (
+    new Date(time.return).getTime() - new Date(time.departure).getTime() > 0
+  );
+};

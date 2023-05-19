@@ -17,11 +17,20 @@ import TextInput from '../Form/TextInput';
 
 import useAddJourney from '../../hooks/useAddJourney';
 import useStationWatch from '../../hooks/useStationWatch';
-import { parseAddJourneyInputs } from '../../utils/parsers';
+import { isValidReturn, parseAddJourneyInputs } from '../../utils/parsers';
 
+let departureDate: string;
 const schema = z.object({
-  departure: z.string().nonempty('Departure date is required!'),
-  return: z.string().nonempty('Return date is required!'),
+  departure: z
+    .string()
+    .nonempty('Departure date is required!')
+    .refine((d) => (departureDate = d)),
+  return: z
+    .string()
+    .nonempty('Return date is required!')
+    .refine((r) => isValidReturn({ return: r, departure: departureDate }), {
+      message: 'Return time can not be before or equal to departure',
+    }),
   departureStationName: z.string().nonempty('Station name is required!'),
   returnStationName: z.string().nonempty('Station name is required!'),
   coveredDistanceMeters: z.string().nonempty('Distance name is required!'),
