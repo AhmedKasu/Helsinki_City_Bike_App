@@ -30,7 +30,6 @@ export const secondToMin = (seconds: number) => {
 export const parseAddJourneyInputs = (inputs: FormData) => {
   return {
     ...inputs,
-    durationSeconds: parseInt(inputs.durationSeconds),
     coveredDistanceMeters: parseInt(inputs.coveredDistanceMeters),
   };
 };

@@ -25,7 +25,6 @@ const schema = z.object({
   departureStationName: z.string().nonempty('Station name is required!'),
   returnStationName: z.string().nonempty('Station name is required!'),
   coveredDistanceMeters: z.string().nonempty('Distance name is required!'),
-  durationSeconds: z.string().nonempty('Durration name is required!'),
 });
 
 export type FormData = z.infer<typeof schema>;
@@ -115,11 +114,6 @@ const AddJourneyForm = () => {
               max={9999999}
               name='coveredDistanceMeters'
               placeholder='Distance (Meters)'
-            />
-            <NumberInput
-              max={9999999}
-              name='durationSeconds'
-              placeholder='Duration (Seconds)'
             />
             <SubmitButton label='Add Journey' />
           </Form>

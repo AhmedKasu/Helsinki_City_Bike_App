@@ -8,7 +8,6 @@ interface FormData {
   departureStationName: string;
   returnStationName: string;
   coveredDistanceMeters: number;
-  durationSeconds: number;
 }
 
 const useAddJourney = () => {
