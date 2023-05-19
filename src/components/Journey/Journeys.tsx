@@ -24,8 +24,8 @@ const Journeys = ({ fetchMore, journeys, loading, networkStatus }: Props) => {
         <Info message='No journeys found !' />
       )}
 
-      {journeys.map((journey) => (
-        <Journey key={journey.id} journey={journey} />
+      {journeys.map((journey, i) => (
+        <Journey key={journey.id + i} journey={journey} />
       ))}
       <Waypoint onEnter={() => fetchMore()} />
       {networkStatus === 3 && <Spinner color='red' />}
