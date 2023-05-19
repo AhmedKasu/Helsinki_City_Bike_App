@@ -1,4 +1,5 @@
 import { FilterParserArgs, FilterVariables } from '../types';
+import { FormData } from '../components/Journey/AddJourneyForm';
 
 export const parseFilter = (variables: FilterParserArgs): FilterVariables => {
   return {
@@ -24,4 +25,12 @@ export const secondToMin = (seconds: number) => {
   return zeroStart.test(mins.toString())
     ? mins.toFixed(2)
     : Math.round(mins).toLocaleString('en-US');
+};
+
+export const parseAddJourneyInputs = (inputs: FormData) => {
+  return {
+    ...inputs,
+    durationSeconds: parseInt(inputs.durationSeconds),
+    coveredDistanceMeters: parseInt(inputs.coveredDistanceMeters),
+  };
 };

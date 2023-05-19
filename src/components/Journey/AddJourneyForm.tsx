@@ -17,6 +17,7 @@ import TextInput from '../Form/TextInput';
 
 import useAddJourney from '../../hooks/useAddJourney';
 import useStationWatch from '../../hooks/useStationWatch';
+import { parseAddJourneyInputs } from '../../utils/parsers';
 
 const schema = z.object({
   departure: z.string().nonempty('Departure date is required!'),
@@ -47,13 +48,10 @@ const AddJourneyForm = () => {
   );
 
   const handleAddJourney = async (variables: FieldValues) => {
-    const formData = {
-      ...(variables as FormData),
-      durationSeconds: parseInt(variables.durationSeconds),
-      coveredDistanceMeters: parseInt(variables.coveredDistanceMeters),
-    };
+    console.log(variables);
+
     try {
-      await addJourney(formData);
+      await addJourney(parseAddJourneyInputs(variables as FormData));
     } catch (e) {
       console.error(e);
       toast({
