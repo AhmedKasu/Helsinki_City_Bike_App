@@ -17,7 +17,10 @@ interface Props {
 const Journeys = ({ fetchMore, journeys, loading, networkStatus }: Props) => {
   const skeletons = [1, 2, 3, 4, 5, 6, 7, 8];
   return (
-    <SimpleGrid columns={{ sm: 1, md: 2, lg: 2 }} spacing={5}>
+    <SimpleGrid
+      columns={{ sm: 1, md: 2, lg: 2 }}
+      spacing={5}
+      pb={{ sm: 25, md: 25, lg: 5 }}>
       {loading && skeletons.map((s) => <JourneySkeleton key={s} />)}
 
       {journeys.length < 1 && !loading && (
