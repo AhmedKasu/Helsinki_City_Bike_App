@@ -118,6 +118,8 @@ Vite react apps are quite easy to deploy. All you need is a distributable build 
 
 Depending on the platform you want to deploy, follow instructions on Vite official page.
 
+This app is deployed to vercel. [check it out](https://helsinki-city-bike-app.vercel.app/)
+
 ## ⛏️ Built Using <a name = "built_using"></a>
 
 - [NodeJs](https://nodejs.org/en/) - Package manager
