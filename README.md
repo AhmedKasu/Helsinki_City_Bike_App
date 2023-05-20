@@ -138,4 +138,6 @@ Depending on the platform you want to deploy, follow instructions on Vite offici
 
 Checkout package.json for more details
 
-## ✍️ Authors <a name = "Ahmed Kasu"></a>
+## ✍️ Authors <a name = "authors"></a>
+
+- [@AhmedKasu](https://github.com/AhmedKasu)
