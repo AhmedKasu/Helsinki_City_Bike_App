@@ -21,14 +21,7 @@ import { parseFilter } from '../../utils/parsers';
 
 const JourneysGrid = () => {
   const { colorMode } = useColorMode();
-  const [journeysQuery, setJourneysQuery] = useState<JourneysQuery>({
-    orderBy: {
-      departureStationName: 'asc',
-      returnStationName: 'asc',
-      durationSeconds: 'asc',
-      coveredDistanceMeters: 'asc',
-    },
-  });
+  const [journeysQuery, setJourneysQuery] = useState<JourneysQuery>({});
 
   const { journeys, error, fetchMore, loading, networkStatus } =
     useJourneys(journeysQuery);
