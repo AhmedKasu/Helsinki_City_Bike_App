@@ -9,7 +9,7 @@ import {
   MenuItemOption,
   MenuDivider,
 } from '@chakra-ui/react';
-import { SortOrders } from '../../types';
+import { SortOrder, SortOrders } from '../../types';
 
 interface Props {
   onSelectSortOrder: (sortOrder: SortOrders) => void;
@@ -26,29 +26,16 @@ const JourneysSorter = ({ onSelectSortOrder }: Props) => {
   const selectedFieldsRef = useRef<string | string[]>();
 
   const handleSortOrder = (order: string | string[]) => {
-    const sortOrder: SortOrders = {
-      departureStationName: 'asc',
-      returnStationName: 'asc',
-      durationSeconds: 'asc',
-      coveredDistanceMeters: 'asc',
-    };
-
     const selectedFields = selectedFieldsRef.current;
 
-    if (selectedFields === undefined && order === 'desc') {
-      Object.keys(sortOrder).forEach((key) => {
-        sortOrder[key as keyof SortOrders] = 'desc';
+    const sortOrders: SortOrders = {};
+    if (Array.isArray(selectedFields) && selectedFields.length > 0) {
+      selectedFields.forEach((field) => {
+        sortOrders[field as keyof SortOrders] = order as SortOrder;
       });
     }
 
-    if (selectedFields && selectedFields.length > 0 && order === 'desc') {
-      Object.keys(sortOrder).forEach((key) => {
-        if (selectedFields.includes(key))
-          sortOrder[key as keyof SortOrders] = 'desc';
-      });
-    }
-
-    return sortOrder;
+    return sortOrders;
   };
 
   return (

@@ -75,10 +75,10 @@ export interface FilterParserArgs {
 
 export type SortOrder = 'asc' | 'desc';
 export interface SortOrders {
-  departureStationName: SortOrder;
-  returnStationName: SortOrder;
-  durationSeconds: SortOrder;
-  coveredDistanceMeters: SortOrder;
+  departureStationName?: SortOrder;
+  returnStationName?: SortOrder;
+  durationSeconds?: SortOrder;
+  coveredDistanceMeters?: SortOrder;
 }
 
 export interface Coordinates {
