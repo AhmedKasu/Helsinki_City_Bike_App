@@ -7,7 +7,8 @@ export const parseFilter = (variables: FilterParserArgs): FilterVariables => {
       ? parseFloat(variables.duration) * 60
       : 10,
     coveredDistanceMeters: variables.distance
-      ? parseFloat(variables.distance) * 1000
+      ? // - 500 to cover for value lost when rounding km to display
+        parseFloat(variables.distance) * 1000 - 500
       : 10,
   };
 };
