@@ -17,7 +17,11 @@ import TextInput from '../Form/TextInput';
 
 import useAddJourney from '../../hooks/useAddJourney';
 import useStationWatch from '../../hooks/useStationWatch';
-import { isValidReturn, parseAddJourneyInputs } from '../../utils/parsers';
+import {
+  isValidDate,
+  isValidReturn,
+  parseAddJourneyInputs,
+} from '../../utils/parsers';
 
 let departureDate: string;
 const schema = z.object({
@@ -28,8 +32,19 @@ const schema = z.object({
   return: z
     .string()
     .nonempty('Return date is required!')
-    .refine((r) => isValidReturn({ return: r, departure: departureDate }), {
-      message: 'Return time can not be before or equal to departure',
+    .superRefine((r, ctx) => {
+      if (!isValidReturn({ return: r, departure: departureDate })) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'Return time can not be before or equal to departure',
+        });
+      }
+      if (!isValidDate(r)) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'Return date can not be in the future',
+        });
+      }
     }),
   departureStationName: z.string().nonempty('Station name is required!'),
   returnStationName: z.string().nonempty('Station name is required!'),

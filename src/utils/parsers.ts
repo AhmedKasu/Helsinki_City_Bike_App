@@ -40,3 +40,7 @@ export const isValidReturn = (time: { departure: string; return: string }) => {
     new Date(time.return).getTime() - new Date(time.departure).getTime() > 0
   );
 };
+
+export const isValidDate = (date: string): boolean => {
+  return Boolean(Date.parse(date)) && new Date(date) < new Date(Date.now());
+};
