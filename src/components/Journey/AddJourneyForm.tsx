@@ -76,8 +76,6 @@ const AddJourneyForm = () => {
   );
 
   const handleAddJourney = async (variables: FieldValues) => {
-    console.log(variables);
-
     try {
       await addJourney(parseAddJourneyInputs(variables as FormData));
     } catch (e) {
