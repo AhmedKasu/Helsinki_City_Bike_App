@@ -12,9 +12,7 @@
 ---
 
 <p align="center"> A web app for journeys made with city bikes in the Helsinki Capital area.
-
-    <br>
-
+  <br> 
 </p>
 
 ## 📝 Table of Contents
@@ -38,9 +36,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 What things you need to install the software and how to install them.
 
-```
-install Nodejs & Typescript if you don't already have on your local machine.
-```
+> install Nodejs & Typescript if you don't already have on your local machine.
 
 ### Installing
 
