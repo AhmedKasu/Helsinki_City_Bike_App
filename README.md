@@ -91,6 +91,7 @@ on top of the list section and details section is a search bar with station name
 On the right is a map showing a single station's location. Select any station from the list of search bar to see its location on the map. Click on the map to see street view of the station's location.
 
 The map is only available to devices with screens larger than 767 pixels.
+**_Google maps api key is required for maps to function accurately_**
 
 ### Add journey page
 
