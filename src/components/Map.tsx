@@ -28,6 +28,7 @@ const Map = ({ coordinates }: Props) => {
     }),
     []
   );
+
   const { lat, lng } = coordinates;
 
   if (!isLoaded)
@@ -43,8 +44,8 @@ const Map = ({ coordinates }: Props) => {
         minZoom: 8,
       }}
       onClick={() => setShowStreetView(true)}
-      zoom={10}
-      center={center}
+      zoom={lat && lng ? 12 : 10}
+      center={lat && lng ? coordinates : center}
       mapContainerStyle={styles.map}>
       {lat && lng && (
         <>
